@@ -79,7 +79,7 @@ highlighted, the only difference would be the position of the X and Y coordinate
 each layer, along the edge of the base cube (Thus causing a twist effect).
 
 ```
-![alt text](/images/Figure1.jpg)
+
 
 Figure 5. Simple cube and twisted cube difference
 ```
