@@ -2,9 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##Requirements
+You need to install node.js to be able to replicate the project on your local machine.
+After that you have to install yarn
+### `npm install -g yarn`
+
+
 ## Available Scripts
 
-In the project directory, you can run:
+In the 3d_project directory, you can run:
 
 ### `yarn start`
 
