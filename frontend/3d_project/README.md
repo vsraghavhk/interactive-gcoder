@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##Requirements
+## Requirements
 You need to install node.js to be able to replicate the project on your local machine.
 After that you have to install yarn
 ### `npm install -g yarn`
