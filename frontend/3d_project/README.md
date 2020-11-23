@@ -7,6 +7,9 @@ You need to install node.js to be able to replicate the project on your local ma
 After that you have to install yarn
 ### `npm install -g yarn`
 
+The next step is to install the node packages
+
+### `yarn install`
 
 ## Available Scripts
 
