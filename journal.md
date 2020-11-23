@@ -11,15 +11,17 @@ Arman Rezaee (827009201)
 
 - Introduction
 - Methodology
-- Results and challenges
-   - Random
-   - Truncated Pyramid
-   - Hourglass
-   - Twist
-   - Flask
-   - Waved Pattern
-   - G-code analyzer
-   - 3-D Printing Progress and Problems
+- Print Results and analysis
+   - General analysis
+   - Analysis of different designs
+      - Random
+      - Truncated Pyramid
+      - Hourglass
+      - Twist
+      - Flask
+      - Waved Pattern
+      - G-code analyzer
+   - User limits and restrictions
 - Conclusion
 - References
 
