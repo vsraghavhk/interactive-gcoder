@@ -1,4 +1,4 @@
-# deploy the frontend on your local machine
+# Deploying the frontend on your local machine
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
