@@ -78,7 +78,7 @@ One can note that the structure of the g-code is the same. Each segment correlat
 highlighted, the only difference would be the position of the X and Y coordinates, which move by 0.2mm
 each layer, along the edge of the base cube (Thus causing a twist effect).
 
-
+![alt text](images/Figure1.jpg?raw=True Title)
 ```
 Figure 5. Simple cube and twisted cube difference
 ```
