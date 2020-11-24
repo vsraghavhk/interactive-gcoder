@@ -10,3 +10,7 @@ The python code is available in the [backend folder here](/backend).
 The frontend is in react native.
 The instructions on how to install this project on your system locally and test it can be found at 
 [Frontend installation guide](/frontend/3d_project)
+
+
+Add videos, gifs of the processes. 
+GUI usage as GIF. 
