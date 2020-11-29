@@ -6,15 +6,17 @@ data['model'] = []
 data['printer'] = []
 
 data['model'].append({
-    'num_sides' : 4,
+    'num_sides' : 5,
     'edge_length' : 10,
-    'num_layers' : 100
+    'num_layers' : 100,
+    'area' : None,
+    'radius' : None
 })
 
 data['printer'].append({
     'center_x' : 110,
     'center_y' : 110,
-    'z_shift' : 0.25,
+    'z_shift' : 0.15,
     'bed_temp' : 60,
     'nozzle_temp' : 260,
     'e_rate' : 0.3,

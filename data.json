@@ -1,9 +1,11 @@
 {
     "model": [
         {
+            "area": 7.654042494670958e-15,
             "edge_length": 10,
             "num_layers": 100,
-            "num_sides": 4
+            "num_sides": 5,
+            "radius": -5.041446470290949
         }
     ],
     "printer": [
@@ -15,7 +17,7 @@
             "e_rate": 0.3,
             "f_rate": 1556,
             "nozzle_temp": 260,
-            "z_shift": 0.25
+            "z_shift": 0.15
         }
     ]
 }

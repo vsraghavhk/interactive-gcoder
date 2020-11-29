@@ -3,7 +3,7 @@ import math
 import matplotlib.pyplot as plt
 
 filename = "test.gcode"
-data_file = "../data.json"
+data_file = "data.json"
 
 class Model:
     '''
@@ -11,57 +11,91 @@ class Model:
     Auto calculates radius, area, and vertices. 
     These funcitons are available for separate calulations as well if needed. 
     '''
-    Z_shift = 0.15
-    bed_temp = 60
-    nozzle_temp = 260
-    E_rate = 0.3
-    F_rate = 1556
-    E_mode = 0 
 
     def __init__(self, file=data_file):
         json_file = open(file) 
         data = json.load(json_file)
 
         # model parameters
-        self.center_x = data['model']['center_x']
-        self.center_y = data['model']['center_y']
-        self.num_sides = data['model']['num_sides']
-        self.edge_length = data['model']['edge_length']
-        
-        # printer parameters
+        for m in data['model']:
+            self.num_sides = m['num_sides']
+            self.edge_length = m['edge_length']
+            self.num_layers = m['num_layers']
 
+        # printer parameters
+        for p in data['printer']:
+            self.Z_shift = p['z_shift']
+            self.bed_temp = p['bed_temp']
+            self.nozzle_temp = p['nozzle_temp']
+            self.E_rate = p['e_rate']
+            self.F_rate = p['f_rate']
+            self.E_mode = p['e_mode'] 
+            self.center_x = p['center_x']
+            self.center_y = p['center_y']
+        
         # calculated
-        self.area = self.get_area(self.num_sides, self.edge_length)
-        self.radius = self.get_radius(self.num_sides, self.edge_length)
-        self.x, self.y = self.find_points(self.num_sides, self.edge_length, self.radius)
+        self.area = None 
+        self.radius = None  
+        self.base_vertices = []
+
+        json_file.close()
+        
+        self.base_calc()
+
+        self.update_json()
 
     # ----- VALUE SETTERS ----- #
 
-    def set_print_settings(self):
-        # Read from JSON file
-        return 0
-
-    def get_int_angle(self, num_sides):
-        # Internal angle = 180*(n-2) / n
-        return (180*(num_sides-2))/num_sides
-    
-    def get_radius(self, num_sides, edge_length):
-        # Radius = s / (2* sin(180/n))
-        return edge_length/(2 * math.sin(180/num_sides))
-    
-    def get_area(self, num_sides, edge_length):
+    def base_calc(self):
         # Area = 1/2 * Perimeter * Apothem
-        return 0.5 * (num_sides*edge_length) * edge_length/(2*math.tan(math.pi/2))
+        self.area = 0.5 * (self.num_sides*self.edge_length) * self.edge_length/(2*math.tan(math.pi/2))
+        # Radius = s / (2* sin(180/n))
+        self.radius = self.edge_length/(2 * math.sin(180/self.num_sides)) 
+        self.base_vertices = self.find_points(self.num_sides, self.edge_length, self.radius)
 
-    def find_points(self, num_sides, edge_length, radius):
+    def find_points(self):
         # Find the vertices of a n-sided polygon. 
-        x = []
-        y = []
+        points = []
         for i in range(0, num_sides):
-            x.append(round(self.center_x + radius * math.cos(2*math.pi*i/num_sides)))
-            y.append(round(self.center_y + radius * math.sin(2*math.pi*i/num_sides)))   
-        return x, y
+            x = round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides))
+            y = round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides))   
+            points.append([x, y])
+        return points
     
+    def update_json(self):
+        data = {}
+
+        data['model'] = []
+        data['printer'] = []
+
+        data['model'].append({
+            'num_sides' : self.num_sides,
+            'edge_length' : self.edge_length,
+            'num_layers' : self.num_layers,
+            'area' : self.area,
+            'radius' : self.radius
+        })
+
+        data['printer'].append({
+            'center_x' : self.center_x,
+            'center_y' : self.center_y,
+            'z_shift' : self.Z_shift,
+            'bed_temp' : self.bed_temp,
+            'nozzle_temp' : self.nozzle_temp,
+            'e_rate' : self.E_rate,
+            'f_rate' : self.F_rate,
+            'e_mode' : self.E_mode 
+        })
+
+        with open(data_file, 'w') as outfile:
+            json.dump(data, outfile, indent=4, sort_keys=True)
+
+    def debug_plot(self):
+        plt.scatter([point[0] for point in self.base_vertices], [point[1] for point in self.base_vertices])
+        plt.axis('equal')
+        plt.show()
+
+    # ----- GCODE FUNCTIONS ----- #
     def write_init_settings(self):
         new = open(filename, "w+")
         # Settings
@@ -90,12 +124,12 @@ class Model:
         new.write("(begin model)\n")      
         new.close()
 
+
 def main():
     
     model = Model()
 
-    model.find_points(model.num_sides, model.edge_length, model.radius)
-    
+    model.debug_plot()
 
 
 if __name__ == "__main__":

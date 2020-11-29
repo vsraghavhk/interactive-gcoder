@@ -5,14 +5,15 @@ x = 0
 y = 0 
 n = 4
 r = 5
-x_val = []
-y_val = []
+points = []
 
 for i in range(0, n):
     x_val.append(round(x+r*math.cos(2*math.pi*i/n)))
-    y_val.append(round(y+r*math.sin(2*math.pi*i/n)))
+    y_valround(y+r*math.sin(2*math.pi*i/n))
+    #print "{}\t {}\n".format(x+r*math.cos(2*math.pi*i/n), y+r*math.sin(2*math.pi*i/n))
 
-plt.scatter(x_val, y_val)
+print(points[0])
+plt.scatter(points)
 plt.axis('equal')
 plt.show()
 
