@@ -1,0 +1,18 @@
+E_rate is between 0 and 1
+User can not set fixed E rate/value.
+
+radius needs to be less than 100mm
+
+edge length needs to be less than 200/(n-2) mm
+    200 for a triangle. 
+    100 for square. 
+
+Radius can not be changed ? (Optional, but needs alerts and calc)
+
+All sides are equal
+
+number of sides can be 1 to inifinite
+num_sides CAN NOT BE 0 !!!!!!
+
+
+User can input filename to save

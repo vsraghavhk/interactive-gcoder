@@ -1,35 +1,35 @@
 {
+    "filename": "default",
     "model": [
         {
             "area": 0.0,
-            "backup_el": 50,
-            "backup_radius": 25.21,
-            "base_vertices": [
-                [
-                    135.21,
-                    110.0
-                ],
-                [
-                    117.79,
-                    133.98
-                ],
-                [
-                    89.6,
-                    124.82
-                ],
-                [
-                    89.6,
-                    95.18
-                ],
-                [
-                    117.79,
-                    86.02
-                ]
+            "backup_el": 8,
+            "backup_radius": 8.21,
+            "base_x": [
+                118.21,
+                115.81,
+                110.0,
+                104.19,
+                101.79,
+                104.19,
+                110.0,
+                115.81
             ],
-            "edge_length": 50,
-            "num_layers": 100,
-            "num_sides": 5,
-            "radius": 25.21
+            "base_y": [
+                110.0,
+                115.81,
+                118.21,
+                115.81,
+                110.0,
+                104.19,
+                101.79,
+                104.19
+            ],
+            "edge_length": 8,
+            "func_choice": 3,
+            "num_layers": 200,
+            "num_sides": 8,
+            "radius": 8.21
         }
     ],
     "printer": [
@@ -37,8 +37,8 @@
             "bed_temp": 60,
             "center_x": 110,
             "center_y": 110,
-            "e_mode": 0,
-            "e_rate": 0.3,
+            "e_mode": 1,
+            "e_rate": 0.6,
             "f_rate": 1556,
             "nozzle_temp": 260,
             "z_shift": 0.15

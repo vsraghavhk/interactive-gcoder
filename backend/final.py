@@ -1,6 +1,8 @@
 import json
 import math
+import random
 import matplotlib.pyplot as plt
+from collections import defaultdict
 
 filename = "test.gcode"
 data_file = "data.json"
@@ -31,68 +33,58 @@ class Model:
             self.num_sides = m['num_sides']
             self.edge_length = m['edge_length']
             self.num_layers = m['num_layers']
+            self.func_choice = m['func_choice']
+        
+        global filename 
+        filename = data['filename']
 
         # calculated
+        self.base_x = []
+        self.base_y = [] 
         self.area = None 
         self.radius = None  
-        self.base_vertices = []
         self.backup_radius = None
         self.backup_el = None
+        self.cur_layer = 0
 
         json_file.close()
         
-        self.base_calc()
+        self.calc_rad_el()
+        self.find_base_points()
         self.update_json()
 
-    # ----- VALUE SETTERS ----- #
+        #self.func = defaultdict(lambda: straight_xy)
+        #self.func = {
+        #    1 : self.straight_xy,
+        #    2 : self.spiral_xy,
+        #    3 : self.wave_xy
+        #}
 
-    def base_calc(self):
-        # Radius = s / (2* sin(180/n))
-        #Area = 1/2 * Perimeter * Apothem
-        self.area = round(0.5 * (self.num_sides*self.edge_length) * self.edge_length/(2*math.tan(math.pi/2)), 2)
-        
-        if self.backup_radius==None and self.backup_el==None:
-            # First init
-            self.radius = self.edge_length/(2 * math.sin(180/self.num_sides)) 
-            self.backup_radius = self.radius
-            self.backup_el = self.edge_length
-    
-        elif self.backup_el == self.edge_length and self.backup_radius != self.radius:
-            # Update edge length since radius is changed
-            self.edge_length = abs(round(self.radius * (2 * math.sin(180/self.num_sides)),2))
-        
-        else: 
-            # Update radius since edge length ois changed (or both changed)
-            self.radius = abs(round(self.edge_length/(2 * math.sin(180/self.num_sides)), 2))
-       
-        self.backup_el - self.edge_length
-        self.backup_radius = self.radius
-        self.base_vertices = self.find_points()
+        # Wave parameters // Not updated to json
+        self.og_radius = self.radius
+        self.wave_dir = 1
 
-    def find_points(self):
-        # Find the vertices of a n-sided polygon. 
-        points = []
-        for i in range(0, self.num_sides):
-            x = round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides), 2)
-            y = round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides), 2)   
-            points.append([x, y])
-        return points
-    
+    # ----- For Updating json only. ----- #
+    # Only function to be called from web-app
     def update_json(self):
-        self.base_calc()
+        global filename
+        self.calc_rad_el()
 
         data = {}
 
         data['model'] = []
         data['printer'] = []
+        data['filename'] = filename
 
         data['model'].append({
+            'func_choice' : self.func_choice,
             'num_sides' : self.num_sides,
             'edge_length' : self.edge_length,
             'num_layers' : self.num_layers,
             'area' : self.area,
             'radius' : self.radius,
-            'base_vertices' : self.base_vertices,
+            'base_x' : self.base_x,
+            'base_y' : self.base_y,
             'backup_radius' : self.backup_radius,
             'backup_el' : self.backup_el
         })
@@ -103,46 +95,161 @@ class Model:
             'z_shift' : self.Z_shift,
             'bed_temp' : self.bed_temp,
             'nozzle_temp' : self.nozzle_temp,
-            'e_rate' : self.E_rate,
+            'e_rate' : self.E_rate, # mm of filament per cm of print
             'f_rate' : self.F_rate,
-            'e_mode' : self.E_mode 
+            'e_mode' : self.E_mode # Absolute(1)[default] / Relative(0)
         })
 
         with open(data_file, 'w') as outfile:
             json.dump(data, outfile, indent=4, sort_keys=True)
 
+    # ----- VALUE SETTERS ----- #
+    # For backend use only. Do not call from frontend.
+    def calc_rad_el(self):
+        # Radius = s / (2* sin(180/n))
+        
+        if self.edge_length==None and self.radius==None:
+            # First init
+            self.radius = self.edge_length / (2 * math.sin(180/self.num_sides)) 
+            self.backup_radius = self.radius
+            self.backup_el = self.edge_length
+    
+        elif self.backup_el == self.edge_length and self.backup_radius != self.radius:
+            # Update edge length since radius is changed
+            self.edge_length = abs(round(self.radius * (2 * math.sin(180/self.num_sides)), 2))
+        
+        else: 
+            # Update radius since edge length ois changed (or both changed)
+            self.radius = abs(round(self.edge_length / (2 * math.sin(180/self.num_sides)), 2))
+       
+        self.backup_el = self.edge_length
+        self.backup_radius = self.radius
+        # Area = 1/2 * Perimeter * Apothem
+        self.area = round(0.5 * (self.num_sides*self.edge_length) * self.edge_length/(2*math.tan(math.pi/2)), 2)
+        
+    def find_base_points(self):
+        # Find the vertices of the base layer for a n-sided polygon. 
+        self.base_x = []
+        self.base_y = []
+        for i in range(0, self.num_sides):
+            self.base_x.append(round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides), 2))
+            self.base_y.append(round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides), 2))  
+        
     def debug_plot(self):
-        plt.scatter([point[0] for point in self.base_vertices], [point[1] for point in self.base_vertices])
+        x, y = self.spiral_xy()
+        plt.scatter(self.base_x, self.base_y)
         plt.axis('equal')
         plt.show()
 
+    def calc_E_val(self, cur_E, x1, y1, x2, y2):
+        # 
+        # E_rate is mm of filament to use per cm of print
+        dist = math.sqrt((x1-x2)**2 + (y1-y2)**2) # in mm
+        return round(((cur_E * self.E_mode) + (dist * self.E_rate /10)), 2)
+
+    # ----- Functions to deform model ----- #
+    # Parsing function
+    def func(self, x, y):
+        if self.func_choice == 2:
+            return self.spiral_xy(x, y)
+        elif self.func_choice == 3:
+            return self.wave_xy(x, y)
+        else:
+            return self.straight_xy(x, y)
+
+    def straight_xy(self, x, y):
+        # Find the vertices of the base layer for a n-sided polygon. 
+        x = []
+        y = []
+        for i in range(0, self.num_sides):
+            x.append(round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides), 2))
+            y.append(round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides), 2))  
+        return x, y
+
+    def spiral_xy(self, x, y):     
+        # Twists the layer by 1 degree (0.0174533 radians) every layer. 
+        x = []
+        y = []
+        for i in range(0, self.num_sides):
+            x.append(round(self.center_x + self.radius * math.cos((2*math.pi*i/self.num_sides)+(self.cur_layer*0.0174533)), 2))
+            y.append(round(self.center_y + self.radius * math.sin((2*math.pi*i/self.num_sides)+(self.cur_layer*0.0174533)), 2))  
+        return x, y
+
+    def wave_xy (self, x, y):
+        if self.radius >= (self.og_radius + 1.5):
+            self.wave_dir = -1
+        elif self.radius <= (self.og_radius - 1.5):
+            self.wave_dir = 1
+            
+        self.radius = self.radius + self.wave_dir*0.1
+ 
+        self.calc_rad_el()
+        return self.straight_xy(x, y)
+
     # ----- GCODE FUNCTIONS ----- #
     def write_init_settings(self):
-        new = open(filename, "w+")
+        new = open(filename+".gcode", "w+")
         # Settings
-        new.write("M104 S{}\n".format(nozzle_temp))
+        new.write("M104 S{}\n".format(self.nozzle_temp))
         new.write("M105\n")
-        new.write("M109 S{}\n".format(nozzle_temp))
-
-        new.write("M140 S{}\n".format(bed_temp))
+        new.write("M109 S{}\n".format(self.nozzle_temp))
+        new.write("M140 S{}\n".format(self.bed_temp))
         new.write("M105\n")
-        new.write("M190 S{}\n".format(bed_temp))
+        new.write("M190 S{}\n".format(self.bed_temp))
 
-        if E_mode==0:
+        if self.E_mode==1:
             new.write("M82; Absolute Extrustion\n")
         else:
             new.write("M83; Relative Extrusion\n")
         
         # Printing the line on the side to make sure nozzle works.
+        E = 0
         new.write("G92 E0; Reset Extruder\n")
         new.write("G1 Z2.0 F3000 ; Move Z Axis up\n")
-        new.write("G1 X20 Y4.7 Z0.28 F5000.0 ; Move to start position\n")
-        new.write("G1 X200 Y4.7 Z0.28 F1500.0 E15 ; Draw the first line\n")
-        new.write("G1 X200 Y5 Z0.28 F5000.0 ; Move to side a little\n")
-        new.write("G1 X20 Y5 Z0.28 F1500.0 E30 ; Draw the second line\n")
+        new.write("G1 X20 Y4.7 Z{} F5000.0 ; Move to start position\n".format(self.Z_shift))
+        E = (E * self.E_mode) + (180*self.E_rate/10)        
+        new.write("G1 X200 Y4.7 Z{} F1500.0 E{} ; Draw the first line\n".format(self.Z_shift, E))
+        new.write("G1 X200 Y5 Z{} F5000.0 ; Move to side a little\n".format(self.Z_shift))
+        E = (E * self.E_mode) + (180*self.E_rate/10)
+        new.write("G1 X20 Y5 Z{} F1500.0 E{} ; Draw the second line\n".format(self.Z_shift, E))
         new.write("G92 E0 ; Reset Extruder\n")
-
         new.write("(begin model)\n")      
+        new.close()
+
+    def make_gcode(self):
+        self.write_init_settings()
+        #filename = filename + ".gcode"
+        new = open(filename+".gcode", "a")
+        x = self.base_x
+        y = self.base_y
+        z = 0
+        E_val = 0
+        for i in range(self.num_layers):
+            self.cur_layer = i
+
+            # Update layer height
+            z = round((z + self.Z_shift), 2)
+            
+            # Calc x and y for layer.
+            x, y = self.func(x, y)
+
+            new.write("(Layer {})\n".format(i+1))
+            for v in range(self.num_sides):
+                if self.E_mode==0: # If relative, E becomes 0 every time
+                    E_val = 0
+                if v==0: 
+                    # First point and start extrusion
+                    new.write("G1 X{} Y{} Z{} F{} E{}\n".format(x[v], y[v], z, self.F_rate, E_val))
+                    new.write("M101\n")
+                else: 
+                    # (n-1 lines with extrusion)
+                    # Calc and update E_val for side. 
+                    E_val = self.calc_E_val(E_val, x[v-1], y[v-1], x[v], y[v])
+                    new.write("G1 X{} Y{} Z{} F{} E{}\n".format(x[v], y[v], z, self.F_rate, E_val))
+            # Return back to staring point and stop extrusion
+            E_val = self.calc_E_val(E_val, x[-1], y[-1], x[0], y[0])
+            new.write("G1 X{} Y{} Z{} F{} E{}\n".format(x[0], y[0], z, self.F_rate, E_val))
+            new.write("M103\n")
         new.close()
 
 
@@ -151,7 +258,8 @@ def main():
     # Creates an object of the class. 
     model = Model()
 
-    model.debug_plot()
+    #model.debug_plot()
+    model.make_gcode()
 
 
 

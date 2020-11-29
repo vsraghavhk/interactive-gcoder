@@ -4,16 +4,20 @@ data = {}
 
 data['model'] = []
 data['printer'] = []
+data['filename'] = 'default'
 
 data['model'].append({
-    'num_sides' : 5,
-    'edge_length' : 10,
+    'func_choice' : 3,
+    'num_sides' : 8,
+    'edge_length' : 8,
     'num_layers' : 100,
     'area' : None,
     'radius' : None,
     'base_vertices' : None,
     'backup_radius' : None,
-    'backup_el' = None
+    'backup_el' : None,
+    'x' : None,
+    'y' : None
 })
 
 data['printer'].append({
@@ -22,9 +26,9 @@ data['printer'].append({
     'z_shift' : 0.15,
     'bed_temp' : 60,
     'nozzle_temp' : 260,
-    'e_rate' : 0.3,
+    'e_rate' : 0.6,
     'f_rate' : 1556,
-    'e_mode' : 0 
+    'e_mode' : 1
 })
 
 with open('data.json', 'w') as outfile:
