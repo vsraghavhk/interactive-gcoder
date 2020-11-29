@@ -11,7 +11,6 @@ class Model:
     Auto calculates radius, area, and vertices. 
     These funcitons are available for separate calulations as well if needed. 
     '''
-
     def __init__(self, file=data_file):
         json_file = open(file) 
         data = json.load(json_file)
