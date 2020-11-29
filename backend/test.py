@@ -1,42 +1,19 @@
-'''
-from collections import defaultdict
-import random
+import math
+import matplotlib.pyplot as plt 
 
-def r_change(x):
-    val = random.randrange(-2, 2, 1)/10
-    return val, 0
+x = 0
+y = 0 
+n = 4
+r = 5
+x_val = []
+y_val = []
 
-def make_wave(x):
-    return x+5
+for i in range(0, n):
+    x_val.append(round(x+r*math.cos(2*math.pi*i/n)))
+    y_val.append(round(y+r*math.sin(2*math.pi*i/n)))
 
-def twist(x):
-    return x-5
+plt.scatter(x_val, y_val)
+plt.axis('equal')
+plt.show()
 
-func = defaultdict(lambda: r_change)
-func = {
-    1 : r_change,
-    2 : make_wave,
-    3 : twist
-}
-#func[1] = r_change
-#func[2] = make_wave
-#func[3] = twist
 
-choice = int(input("Enter:"))
-print(func)
-print(func[choice])
-print(str(func[choice]).split(" ")[1])
-
-XO = 0
-YO = 0
-ZO = 0
-
-line = "G92 X0 Y0 Z0"
-
-if line[:3]=="G92":
-    print("G92 X{} Y{} Z{}\n".format(XO, YO, ZO))
-'''
-X = 95
-Y = 125
-E = float((abs(X-Y))/2000)
-print(E)
