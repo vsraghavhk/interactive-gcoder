@@ -1,11 +1,16 @@
+import os
 import json
 import math
-import random
+from random import randrange
 import matplotlib.pyplot as plt
+from create_json import make_json
 from collections import defaultdict
 
 filename = "test.gcode"
 data_file = "data.json"
+# create data.json file if it doesn't exist.
+if os.path.exists(data_file)==False:
+    make_json()
 
 class Model:
     '''
@@ -34,6 +39,8 @@ class Model:
             self.edge_length = m['edge_length']
             self.num_layers = m['num_layers']
             self.func_choice = m['func_choice']
+            # Random parameter
+            self.random_value = m['random_value']
         
         global filename 
         filename = data['filename']
@@ -53,16 +60,14 @@ class Model:
         self.find_base_points()
         self.update_json()
 
-        #self.func = defaultdict(lambda: straight_xy)
-        #self.func = {
-        #    1 : self.straight_xy,
-        #    2 : self.spiral_xy,
-        #    3 : self.wave_xy
-        #}
-
         # Wave parameters // Not updated to json
         self.og_radius = self.radius
         self.wave_dir = 1
+
+        # Spiral is always 1 degree per layer. 
+
+        # Random parameter
+        
 
     # ----- For Updating json only. ----- #
     # Only function to be called from web-app
@@ -77,6 +82,7 @@ class Model:
         data['filename'] = filename
 
         data['model'].append({
+            'random_value' : self.random_value,
             'func_choice' : self.func_choice,
             'num_sides' : self.num_sides,
             'edge_length' : self.edge_length,
@@ -154,6 +160,8 @@ class Model:
             return self.spiral_xy(x, y)
         elif self.func_choice == 3:
             return self.wave_xy(x, y)
+        elif self.func_choice == 4:
+            return random_xy(x, y)
         else:
             return self.straight_xy(x, y)
 
@@ -182,9 +190,14 @@ class Model:
             self.wave_dir = 1
             
         self.radius = self.radius + self.wave_dir*0.1
- 
         self.calc_rad_el()
         return self.straight_xy(x, y)
+
+    def random_xy(self, x, y):
+        self.radius = self.radius + (randrange(10) - 3)
+        self.calc_rad_el()
+        return self.straight_xy(x, y)
+
 
     # ----- GCODE FUNCTIONS ----- #
     def write_init_settings(self):

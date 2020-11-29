@@ -29,7 +29,8 @@
             "func_choice": 3,
             "num_layers": 200,
             "num_sides": 8,
-            "radius": 8.21
+            "radius": 8.21,
+            "random_value": 3
         }
     ],
     "printer": [
