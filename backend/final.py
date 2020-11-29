@@ -16,12 +16,6 @@ class Model:
         json_file = open(file) 
         data = json.load(json_file)
 
-        # model parameters
-        for m in data['model']:
-            self.num_sides = m['num_sides']
-            self.edge_length = m['edge_length']
-            self.num_layers = m['num_layers']
-
         # printer parameters
         for p in data['printer']:
             self.Z_shift = p['z_shift']
@@ -32,37 +26,62 @@ class Model:
             self.E_mode = p['e_mode'] 
             self.center_x = p['center_x']
             self.center_y = p['center_y']
-        
+
+        # model parameters
+        for m in data['model']:
+            self.num_sides = m['num_sides']
+            self.edge_length = m['edge_length']
+            self.num_layers = m['num_layers']
+
         # calculated
         self.area = None 
         self.radius = None  
         self.base_vertices = []
+        self.backup_radius = None
+        self.backup_el = None
 
         json_file.close()
         
         self.base_calc()
-
         self.update_json()
 
     # ----- VALUE SETTERS ----- #
 
     def base_calc(self):
-        # Area = 1/2 * Perimeter * Apothem
-        self.area = 0.5 * (self.num_sides*self.edge_length) * self.edge_length/(2*math.tan(math.pi/2))
         # Radius = s / (2* sin(180/n))
-        self.radius = self.edge_length/(2 * math.sin(180/self.num_sides)) 
-        self.base_vertices = self.find_points(self.num_sides, self.edge_length, self.radius)
+        #Area = 1/2 * Perimeter * Apothem
+        self.area = round(0.5 * (self.num_sides*self.edge_length) * self.edge_length/(2*math.tan(math.pi/2)), 2)
+        
+        if self.backup_radius==None and self.backup_el==None:
+            # First init
+            self.radius = self.edge_length/(2 * math.sin(180/self.num_sides)) 
+            self.backup_radius = self.radius
+            self.backup_el = self.edge_length
+    
+        elif self.backup_el == self.edge_length and self.backup_radius != self.radius:
+            # Update edge length since radius is changed
+            self.edge_length = abs(round(self.radius * (2 * math.sin(180/self.num_sides)),2))
+        
+        else: 
+            # Update radius since edge length ois changed (or both changed)
+            self.radius = abs(round(self.edge_length/(2 * math.sin(180/self.num_sides)), 2))
+       
+        self.backup_el - self.edge_length
+        self.backup_radius = self.radius
+        self.base_vertices = self.find_points()
 
     def find_points(self):
         # Find the vertices of a n-sided polygon. 
         points = []
-        for i in range(0, num_sides):
-            x = round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides))
-            y = round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides))   
+        for i in range(0, self.num_sides):
+            x = round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides), 2)
+            y = round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides), 2)   
             points.append([x, y])
         return points
     
     def update_json(self):
+        self.base_calc()
+
         data = {}
 
         data['model'] = []
@@ -73,7 +92,10 @@ class Model:
             'edge_length' : self.edge_length,
             'num_layers' : self.num_layers,
             'area' : self.area,
-            'radius' : self.radius
+            'radius' : self.radius,
+            'base_vertices' : self.base_vertices,
+            'backup_radius' : self.backup_radius,
+            'backup_el' : self.backup_el
         })
 
         data['printer'].append({
@@ -127,9 +149,11 @@ class Model:
 
 def main():
     
+    # Creates an object of the class. 
     model = Model()
 
     model.debug_plot()
+
 
 
 if __name__ == "__main__":

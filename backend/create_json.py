@@ -10,7 +10,10 @@ data['model'].append({
     'edge_length' : 10,
     'num_layers' : 100,
     'area' : None,
-    'radius' : None
+    'radius' : None,
+    'base_vertices' : None,
+    'backup_radius' : None,
+    'backup_el' = None
 })
 
 data['printer'].append({
