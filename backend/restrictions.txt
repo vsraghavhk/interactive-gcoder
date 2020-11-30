@@ -16,3 +16,26 @@ num_sides CAN NOT BE 0 !!!!!!
 
 
 User can input filename to save
+
+Ranges:
+    Z_shift = 0.1 to 5
+    Bed_temp = 0 to 70
+    Nozzle_temp = 200 to 280
+    E_rate = 0 to 1 (in mm of filament per cm of print)
+    F_rate = 500 to 3000
+    E_mode = 1 (For Absolute) or 0 (for relative)
+    num_sides = 2 to infinite (2 will produce a line)
+    edge_length = 1mm to 50mm (Depends on edge radius)
+    radius = 1mm to 100mm
+    num_layers = 1 to 200/Z_shift
+    wave_amp = 0.1 mm to 50 (Anything amplitude more radius has a chance to tip over. But user should be able to enter anyway)
+    random_value = 1 to 10
+    func_choice = {
+        1 : Straight
+        2 : Spiral
+        3 : Wave
+        4 : Screw
+        5 : Random
+        6 : Shift
+        7 : Shift and turn
+    } 
