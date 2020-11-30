@@ -7,7 +7,7 @@ from create_json import make_json
 from collections import defaultdict
 
 filename = "default.gcode"
-data_file = "../g-code-learner/src/variables.json"
+data_file = "variables.json"
 # create data.json file if it doesn't exist.
 if os.path.exists(data_file) == False:
     make_json()
