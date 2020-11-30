@@ -1,4 +1,4 @@
-# This is the Final Journal for Digital Fabrication Studio. 
+# This is the mid-term report. Final journal will be updated here as soon as it is done. 
 **CSCE 689
 Digital Fabrication Studio
 Fall 2020
@@ -182,15 +182,23 @@ Figure 12: Random (left) and Screw prints (center and right)
 Figure 13: The Shift (two on the left) and Shift and Turn (two on the right) prints from different perspectives. 
 ```
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
 
+```
+Figure 14: Photos of the Straight Design being printed at different points of time. 
+```
 
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="400">  
 
+```
+Figure 15: A comparison of the same Spiral design printed with different parameters. The left one has 210C Nozzle temperature and 0.24mm layer height. the right one has 230C nozzle temperature and 0.15 mm layer height. 
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
+
+```
+Figure 16: The Wave pattern print sample. We can see that there is still some print artifacts near the overhang. 
+```
 
 ## User limits and Restrictions
 We made our tool to provide flexibility to the user in as many ways as possible. But there are still some restrictions to what the user can do due to a variety of reasons. 
