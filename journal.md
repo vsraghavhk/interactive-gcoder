@@ -59,7 +59,9 @@ for this project we chose React as our framework to call the api and run the pyt
 React cannot handle the api call and in order to use our python code in the backend we had to use Flask. Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
 Figure below illustrates the UI and all parameters that user can change.
+
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG" width="400">
+
 ```
 Figure 2: Screenshot of the Web-app UI
 ```
@@ -76,10 +78,10 @@ Then comes the predefined gcode to print a horizontal line across one edge of th
 
 The [Methodology section](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#methodology) of this journal explains how the layer wise gcode is structured along with Figure 1 which shows the `(begin model)` tag explained in the previous paragraph. Figure x here also shows the predfind gcode to validate print settings. Figure X+1 shows what it translates to in the actual printing process. 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/gcode-snippet.png" width="400"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/printer.jpg" width="400">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/gcode-snippet.png" width="400">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/printer.jpg" width="400">
 
 ```
-Figure 3: (left) Predifined gcode snippet for Validation; (right) Photo of what the gcode from Figure X prints.
+Figure 3: (left) Predifined gcode snippet for Validation; (right) Photo of what Figure 3 code snippet prints. One can see the predfeined print line on the far side of the print bed.
 ```
 Once can note that the E value (`Extrusion value`) goes up consistently as the layers increase. The E value represents how much filament is to be extruded by the time the nozzle moves to the coordinates given. For example in Figure 1, the E value is seen to go up consistently by 0.4 for every edge (1.2 over a layer). This means that the printer will extrude 0.4mm of filament while moving to each point. The number shown is the `Absolute` value since the the extruder was reset. This can also be set to `Relative` mode, in which case all E values will become 0.4 rather than incraeaseing by 0.4 every time. One can also note that some lines have E values while others don't. This is intentional since missing the E value in a line is same as telling the printer to not extrude any filament while moving to the coordinates given. The user can change the E value by changing `E_rate` or extrusion rate which we define in millmeters of filament used per unit centimeter. 
 
@@ -90,10 +92,10 @@ Let us now get into the different functions the backend uses to build the model'
 ### Pattern: Straight
 This pattern or shape is simply the base layer copied on top of itself for howmany ever layers the print is defined for by the use. It basically creates a hollow structure with no features (Apart from print lines) on the surface. The gcode, 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="200"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="300"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="300">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="300">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="300">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="300">
 
 ```
-Figure 4: (a) Gcode of a Stright pattern [Note that the X and Y values don't change every layer];(b) ncviewer model; (c) Printed sample;
+Figure 4: (a) Gcode of a Stright pattern [Note that the X and Y values don't change every layer]; (b) ncviewer model; (c) Printed sample;
 ```
 
 ### Pattern: Spiral
@@ -103,7 +105,7 @@ xk = center_x + radius * cos((2*pi*k/num_sides)+(cur_layer*0.0174533))
 yk = center_y + radius * sin((2*pi*k/num_sides)+(cur_layer*0.0174533))
 ```
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral-model.png" width="250"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="250">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="250">
 
 ```
 Figure 5: NCViewer model vs a couple of test prints of the Spiral design with different layer heights (0.24 for left and 0.15 for right)
@@ -112,7 +114,7 @@ Figure 5: NCViewer model vs a couple of test prints of the Spiral design with di
 ### Pattern: Wave
 For this pattern the vertexes and slowly moved away from the center every layer adn then the direction is reversed and the points move closer to the center. This is made possible by changing the radius of the shape at every layer, and recalculating the vertex points and edge lengths accordingly. The direction of change reverses when the the vertex 2.5mm wider or narrower than the original starting position.  
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave-model.png" width="250"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="250">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="250">
 
 ```
 Figure 6: A NCViewer model of the wave and a small print of the same.
@@ -121,7 +123,7 @@ Figure 6: A NCViewer model of the wave and a small print of the same.
 ### Pattern: Random
 At every layer, the verices either move away or towards the center at random within a range given by the user. The Random range set by the user determines the maximum change in radius in 0.1mm step at every layer. If the value is set to 10, then the next layer can be changed anywhere from 0.5mm away from center or 0.5mm towards the center. Our print below gave us an interesting result where the shape eventually converged at the center a few times. 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random-model.png" width="250"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="250">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="250">
 
 ```
 Figure 7: Random model design vs actual print. We can clearly see where the print starts to fail when there is no support from previous layer. (But its art!)
@@ -129,20 +131,30 @@ Figure 7: Random model design vs actual print. We can clearly see where the prin
 
 ### Pattern: Screw
 This interesting pattern is made by combining the spiral pattern with a reducing radius, resembling a small wood screw. But the radius does not decrease below 3mm, below which only the spiralpattern is made. We can see the itneresting patterns caused by the layers in the image below. 
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="250">
+
+
 ```
-ADD IMAGES
+Figure 8: A sliced model and a print of the Screw design. 
 ```
 
 ### Pattern: Shift
 The previous designs were made by changing the position of the vertices at each layer. But this pattern is made by shifting the center across the print bed. The original center for this print is at ```(x, y) = (110, 110)```. But as the layer increases, the center is moved by 0.1mm every layer along the X axis and the vertices are recalculated. This creates the pattern resembling a [Penne pasta](https://en.wikipedia.org/wiki/Penne). 
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="250">
+
 ```
-ADD IMAGES
+Figure 9: A gcode model in ncviewer and a print of the Shift design. It resembles a Penne Pasta. 
 ```
 
 ### Pattern: Shift and Turn
 This design takes the Shift pattern one step further by combining the spiral pattern with it. So at every layer the vertices rotate around the center by 1 degree, and the center shifts by 0.1mm and the vertices are recalculated. Thus it gives this very cool effect. This design also shows that the python code is design with modularity in mind, i.e. a user interested in modifying the code, can simply combine modules as is and create new shapes and patterns. 
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="250">
+
 ```
-ADDD IMAGE
+Figure 10: This interesting model is made by combining the shift and Spiral pattern. The center of the design moves along an axis. 
 ```
 
 ## Some interesting print results and analysis
