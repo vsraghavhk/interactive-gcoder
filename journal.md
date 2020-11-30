@@ -44,7 +44,7 @@ For example, let us consider a cube print (Square layers). The square has just f
 
 ![Figure 1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
 ```
-Insert Figure 1: Screenshot of 1 layer of g-code of a square.
+Figure 1: G-code snippet of a couple of layers of a cube.
 ```
 
 Note that Figure 1 shows the structure of g-code. Each layer has the same structure with just changes to the values. Now that we know how gcode works every layer, we can start understanding how to create some interesting shapes, but simple changing the vertex points at every layer. If we want to twist each layer as it goes up, we can simply move the vertices along its circum-circle so as to create a 1-degree shift at every layer. Or we can randomly move the vertices away or twoards the center of the shape by a small amount at every layer to create a randomized texture. While different functions canbe applied to each layer, one should note that when printing a layer, there should be a layer beneath it to support the extrusion. If there is not, the extruded filament will fall creating a printing failure or a work of art! But this entails some risk to the printer itself. If the next layer is too close the previous layer, the extrusion will ahve no space to come out and might clog the nozzle. This required us to instill some restrictions to the tool so that the user can focus on creating interesting shapes, without having to worry too much about damaging their printer. 
@@ -52,11 +52,18 @@ Note that Figure 1 shows the structure of g-code. Each layer has the same struct
 The tool consists of a frontend written in React (Javascript) and backend written in Python. The frontend, written in React (Javascript) allows the user to manipulate parameters using an UI, and obtain the final gcode as well as simulate the model in real time. The backend is the "brain" of the tool which takes in the user inputs through a JSON file updated by the front end and generates the gcode of the 3D model and gives it abck for the frontend to display and interpret it. The backend is written using Python, a simple and effective programming language for beginners.  
 
 ## UI Design (Frontend)
+This part will be updated by Arman. 
 This part is where we will provide images of the UI design and what the user will see before printing
 
 This will also show the alert design and how they are showed. It will also explain how alerts work and what the user can or can not do. 
 
 ## Backend Implementation
+As summarized earlier, the backend is written in Python with the Flask API to connect with the frontend. The python code is written in Python3 (3.9.0) and is also an API to our tool. The entire program is written as a single class with class methods (functions) and object instances (variables). 
+The parameters set by the user are stored in a JSON (JavaScript Object Notation) file which can be fetched and updated by both the frontend and backend. 
+Once the JSON file is read, the parameters are parsed into object instances of the `Model` class. The parameters are then cross validated to avoid conflicts and print failures, then sued for th gocode generation. 
+### Gcode Generation
+
+
 Will be edited by Raghav. 
 This section will provide the details of how the backend works. 
 The backend is written in python for all data handling, calculations, and gcode creation. 
