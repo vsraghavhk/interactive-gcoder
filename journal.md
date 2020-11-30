@@ -45,8 +45,7 @@ Gcode (or Geometry code) is a programming language used by machines to understan
 
 For example, let us consider a cube print (Square layers). The square has just four corners. Which means we only need to define the points for the tool to move through at each layer. Each layer starts and stops at the same position (Hence 5 points needs to be defined). The amount the extrude can be defined based on how long it moves and how much material we want to use per usit distance. In our program, we use E_rate or extrusion rate to define how many millimeters of filament to use per unit cm of print. The F_rate or feed rate corresponds to how fast the nozzle needs to move (in mm/minute). As we can see in figure 1, these values are defined by the X, y, Z, F, and E values in the g-code. This concept can simply be extended to pentagons, hexagons, or pretty much any n-sided shape. 
 
-
-![Figure 1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/gcode-snippet.png" width="400">
 ```
 Figure 1: G-code snippet of a couple of layers of a cube.
 ```
@@ -60,8 +59,10 @@ for this project we chose React as our framework to call the api and run the pyt
 React cannot handle the api call and in order to use our python code in the backend we had to use Flask. Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
 Figure below illustrates the UI and all parameters that user can change.
-
-![Figure 2: Single page webapp](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG)
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG" width="400">
+```
+Figure 2: Screenshot of the Web-app UI
+```
  
 Users have almost open hand to experiment with the values and see the results. However, in order to prevent the damage to the printer, some parameters including those related to temperature and printing dimension had been limited to predefined values and all the general values like number of edges has not any limit. Moreover, we have assigned a default value to each parameter. these default values were assigned based on experience with our 3Dprinter to yield the base result with PLA.
 
@@ -78,15 +79,11 @@ The [Methodology section](https://github.com/vsraghavhk/interactive-gcoder/blob/
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/gcode-snippet.png" width="400"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/printer.jpg" width="400">
 
 ```
-Figure X: (left) Predifined gcode snippet for Validation; (right) Photo of what the gcode from Figure X prints.
+Figure 3: (left) Predifined gcode snippet for Validation; (right) Photo of what the gcode from Figure X prints.
 ```
 Once can note that the E value (`Extrusion value`) goes up consistently as the layers increase. The E value represents how much filament is to be extruded by the time the nozzle moves to the coordinates given. For example in Figure 1, the E value is seen to go up consistently by 0.4 for every edge (1.2 over a layer). This means that the printer will extrude 0.4mm of filament while moving to each point. The number shown is the `Absolute` value since the the extruder was reset. This can also be set to `Relative` mode, in which case all E values will become 0.4 rather than incraeaseing by 0.4 every time. One can also note that some lines have E values while others don't. This is intentional since missing the E value in a line is same as telling the printer to not extrude any filament while moving to the coordinates given. The user can change the E value by changing `E_rate` or extrusion rate which we define in millmeters of filament used per unit centimeter. 
 
-The `Feed rate` or F value in the code directly correlates to the distance travelled by the nozzle in millimeters per minute (mm/min). In the same example, you can see that the F values in 
-```
-Figure X (Update vlue of x)
-```
- goes upto 5000. The maximum and minimum is often limited to the capabilities of the printer itself. But if the nozzle moves too fast while printing, the extrusion will not adhere to the previous layer properly. If it moves too slow, the extrusion can heatup the previous layer causing warpage or even clog the nozzle. The user can change this value in the UI as well. 
+The `Feed rate` or F value in the code directly correlates to the distance travelled by the nozzle in millimeters per minute (mm/min). In the same example, you can see that the F values in Figure 3 goes upto 5000. The maximum and minimum is often limited to the capabilities of the printer itself. But if the nozzle moves too fast while printing, the extrusion will not adhere to the previous layer properly. If it moves too slow, the extrusion can heatup the previous layer causing warpage or even clog the nozzle. The user can change this value in the UI as well. 
 
 Let us now get into the different functions the backend uses to build the model's gcode and how the layers are modified to create these interesting structures. 
 
@@ -96,7 +93,7 @@ This pattern or shape is simply the base layer copied on top of itself for howma
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="200"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="300"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="300">
 
 ```
-Figure X+2: Gcode of a Stright pattern [Note that the X and Y values don't change every layer]; Figure X+3: ncviewer model; Figure x+4: PRinted sample;
+Figure 4: (a) Gcode of a Stright pattern [Note that the X and Y values don't change every layer];(b) ncviewer model; (c) Printed sample;
 ```
 
 ### Pattern: Spiral
