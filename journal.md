@@ -60,6 +60,7 @@ for this project we chose React as our framework to call the api and run the pyt
 React cannot handle the api call and in order to use our python code in the backend we had to use Flask. Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
 Figure below illustrates the UI and all parameters that user can change.
+
 ![Figure 2: Single page webapp](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG)
  
 Users have almost open hand to experiment with the values and see the results. However, in order to prevent the damage to the printer, some parameters including those related to temperature and printing dimension had been limited to predefined values and all the general values like number of edges has not any limit. Moreover, we have assigned a default value to each parameter. these default values were assigned based on experience with our 3Dprinter to yield the base result with PLA.
@@ -166,6 +167,8 @@ Hands-on experience in modifying g-code is a powerful way to teach how 3D printe
 4. [G-code Analyzer](https://www.gcodeanalyser.com/)
 5. [Ultimaker Cura 3D slicer and gcode analyzer](https://ultimaker.com/software/ultimaker-cura)
 6. Our Python code and experiments can be [found in our github!](https://github.com/vsraghavhk/interactive-gcoder)
+7. [React javaScript library for User Interface](https://reactjs.org/)
+8. [Python Flask API](https://flask.palletsprojects.com/en/1.1.x/)
     
 
 
