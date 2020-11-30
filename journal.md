@@ -65,8 +65,13 @@ Once the JSON file is read, the parameters are parsed into object instances of t
 First the bed and nozzle temperatures are set along with wait commands. This ensures that the temperatures are stable before the printing process starts. 
 Then comes the predefined gcode to print a horizontal line across one edge of the print bed. This is to make sure the nozzle is running and the extrusion and printing works fine and to reset the extruder before we start printing the model itself. This is a common practice in 3D pritning (either as a line or as on outline to the base layer) and especially important in our tool as it allows the user to quickly check if their extrusion rate and feed rate values are as they expected. If this line doesn't print properly, the user can immediately stop the print, change the values and try again, saving filament and time. After this is where the actual layer-wise gcode begins. This is noted by the `(begin model)` comment in gcode, automatically inserted by the python program. 
 
+The Methodology section of this journal explains how the layer wise gcode is structured along with Figure 1 which shows the `(begin model)` tag explained in the previous paragraph. Figure x here also shows the predfind gcode to validate print settings. Figure X+1 shows what it translates to in the actual printing process. 
 
-
+![Figure X: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
+![Figure X+1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
+```
+Figure X: Predifined gcode snippet for Validation; Figure X+1: Photo of what the gcode from Figure X prints.
+```
 
 Will be edited by Raghav. 
 This section will provide the details of how the backend works. 
