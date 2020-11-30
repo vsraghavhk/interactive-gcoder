@@ -87,6 +87,7 @@ Once can note that the E value (`Extrusion value`) goes up consistently as the l
 
 The `Feed rate` or F value in the code directly correlates to the distance travelled by the nozzle in millimeters per minute (mm/min). In the same example, you can see that the F values in Figure 3 goes upto 5000. The maximum and minimum is often limited to the capabilities of the printer itself. But if the nozzle moves too fast while printing, the extrusion will not adhere to the previous layer properly. If it moves too slow, the extrusion can heatup the previous layer causing warpage or even clog the nozzle. The user can change this value in the UI as well. 
 
+## Shape Functions and the patterns they create. 
 Let us now get into the different functions the backend uses to build the model's gcode and how the layers are modified to create these interesting structures. 
 
 ### Pattern: Straight
