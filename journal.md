@@ -3,6 +3,7 @@
 Digital Fabrication Studio
 Fall 2020
 Hands-on learning of G-code using a Python tool.**
+
 [Raghav Hari Krishna V S](https://github.com/vsraghavhk) (427009525)
 
 [Arman Rezaee](https://github.com/armanrze) (827009201)
