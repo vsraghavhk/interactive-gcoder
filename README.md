@@ -16,6 +16,7 @@ variables.json holds the parameters set by the user. It is created with some def
 If this fle does not exist (and if values are not updated in the web page), consider running create_json.py. This will create the file with some default values.
 Changing values in the file manually should be same as changing the values in the web page. A good way to understand how the code works as well. (Or if you are not a GUI person)
 
-
-Add videos, gifs of the processes. 
-GUI usage as GIF. 
+# Media
+Photos, GIFs, and Videos are available in the [images folder](https://github.com/vsraghavhk/interactive-gcoder/tree/main/images). 
+The [gcodes folder](https://github.com/vsraghavhk/interactive-gcoder/tree/main/gcodes) has many sample gcodes we made during our testing. 
+If you would like to recreate the prints [shown in the journal](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#some-interesting-print-results-and-analysis), use print1.gcode to print8.gcode.  
