@@ -92,9 +92,7 @@ Let us now get into the different functions the backend uses to build the model'
 ### Pattern: Straight
 This pattern or shape is simply the base layer copied on top of itself for howmany ever layers the print is defined for by the use. It basically creates a hollow structure with no features (Apart from print lines) on the surface. The gcode, 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="30">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="35">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="35">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="100"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="150"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="150">
 ```
 ![Straight-gcode](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png)
 ![Straight-model](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png)
