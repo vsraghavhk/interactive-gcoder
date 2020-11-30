@@ -11,8 +11,8 @@ Arman Rezaee (827009201)
 
 - Introduction
 - Methodology
-   - UI Design (Frontend)
-   - Backend implementation
+- UI Design (Frontend)
+- Backend implementation
 - Print Results and analysis
    - General analysis
    - Analysis of different designs
