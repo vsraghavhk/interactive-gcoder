@@ -46,7 +46,6 @@ Gcode (or Geometry code) is a programming language used by machines to understan
 For example, let us consider a cube print (Square layers). The square has just four corners. Which means we only need to define the points for the tool to move through at each layer. Each layer starts and stops at the same position (Hence 5 points needs to be defined). The amount the extrude can be defined based on how long it moves and how much material we want to use per usit distance. In our program, we use E_rate or extrusion rate to define how many millimeters of filament to use per unit cm of print. The F_rate or feed rate corresponds to how fast the nozzle needs to move (in mm/minute). As we can see in figure 1, these values are defined by the X, y, Z, F, and E values in the g-code. This concept can simply be extended to pentagons, hexagons, or pretty much any n-sided shape. 
 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/gcode-snippet.png" width="400">
-
 ```
 Figure 1: G-code snippet of a couple of layers of a cube.
 ```
@@ -147,7 +146,9 @@ ADDD IMAGE
 ```
 
 ## Some interesting print results and analysis
-This sub division will provide images and analysis of some prints we made using our tool.
+Using our printer we printed multiple objects in different forms and settings to find the optimum values. At first we used the nozzle temperature of 230 degree which cause some deformation. we belive that it was the result of high temperature of fillament which could not cool downwhile the nozzle was moving.the other discovery was that if the edge length is too short( lass than 5 millimeter, the shape will reform which is obvious in the random and srew models. Moreover, we noticed some overhang issues in the wave model and shift model which can be attribute to high nozzle speed or high temperature.
+
+Overall the quality of the prints and the performance of this interactive tool was robust and better than expected. Below you can find some samples of the printed shapes.
 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600"> 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200"> 
@@ -189,7 +190,7 @@ Hands-on experience in modifying g-code is a powerful way to teach how 3D printe
 ## References
 
 1. [G-code Wiki](https://reprap.org/wiki/G-code)
-2. [jherrm G-code simulator](​https://jherrm.com/gcode-viewer)
+2. [jherrm G-code simulator](https://jherrm.com/gcode-viewer)
 3. [NCViewer - G-code viewer](https://ncviewer.com)
 4. [G-code Analyzer](https://www.gcodeanalyser.com/)
 5. [Ultimaker Cura 3D slicer and gcode analyzer](https://ultimaker.com/software/ultimaker-cura)
