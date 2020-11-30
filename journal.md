@@ -60,9 +60,7 @@ for this project we chose React as our framework to call the api and run the pyt
 React cannot handle the api call and in order to use our python code in the backend we had to use Flask. Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
 Figure below illustrates the UI and all parameters that user can change.
-
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG" width="400" class="center">
-
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG" width="400">
 ```
 Figure 2: Screenshot of the Web-app UI
 ```
@@ -139,20 +137,11 @@ ADDD IMAGE
 ## Some interesting print results and analysis
 This sub division will provide images and analysis of some prints we made using our tool.
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="400">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
 
 
 
