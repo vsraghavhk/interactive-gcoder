@@ -56,7 +56,12 @@ Note that Figure 1 shows the structure of g-code. Each layer has the same struct
 The tool consists of a frontend written in React (Javascript) and backend written in Python. The frontend, written in React (Javascript) allows the user to manipulate parameters using an UI, and obtain the final gcode as well as simulate the model in real time. The backend is the "brain" of the tool which takes in the user inputs through a JSON file updated by the front end and generates the gcode of the 3D model and gives it abck for the frontend to display and interpret it. The backend is written using Python, a simple and effective programming language for beginners.  
 
 ## UI Design (Frontend)
-This part will be updated by Arman. 
+for this project we chose React as our framework to call the api and run the python backend on server. React.js is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications. It's used for handling the view layer for web and mobile apps. React also allows us to create reusable UI components.
+React cannot handle the api call and in order to use our python code in the backend we had to use Flask. Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
+
+Figure below illustrates the UI.
+![Figure 2: Single page webapp](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG)
+ 
 This part is where we will provide images of the UI design and what the user will see before printing
 
 This will also show the alert design and how they are showed. It will also explain how alerts work and what the user can or can not do. 
@@ -165,7 +170,7 @@ Hands-on experience in modifying g-code is a powerful way to teach how 3D printe
 ## References
 
 1. [G-code Wiki](https://reprap.org/wiki/G-code)
-2. [jherrm G-code simulator](https://jherrm.com/gcode-viewer)
+2. [jherrm G-code simulator](​https://jherrm.com/gcode-viewer)
 3. [NCViewer - G-code viewer](https://ncviewer.com)
 4. [G-code Analyzer](https://www.gcodeanalyser.com/)
 5. [Ultimaker Cura 3D slicer and gcode analyzer](https://ultimaker.com/software/ultimaker-cura)
