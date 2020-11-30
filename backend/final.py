@@ -127,8 +127,7 @@ class Model:
        
         self.backup_el = self.edge_length
         self.backup_radius = self.radius
-       
-        
+            
     def find_base_points(self):
         # Find the vertices of the base layer for a n-sided polygon. 
         self.base_x = []
@@ -137,12 +136,6 @@ class Model:
             self.base_x.append(round(self.center_x + self.radius * math.cos(2*math.pi*i/self.num_sides), 2))
             self.base_y.append(round(self.center_y + self.radius * math.sin(2*math.pi*i/self.num_sides), 2))  
         
-    def debug_plot(self):
-        x, y = self.spiral_xy()
-        plt.scatter(self.base_x, self.base_y)
-        plt.axis('equal')
-        plt.show()
-
     def calc_E_val(self, cur_E, x1, y1, x2, y2):
         # 
         # E_rate is mm of filament to use per cm of print
@@ -160,6 +153,10 @@ class Model:
             return self.screw_xy(x, y)
         elif self.func_choice == 5:
             return random_xy(x, y)
+        elif self.func_choice == 6: 
+            return self.shift_xy(x, y)
+        elif func_choice == 7:
+            return self.shift_turn_xy(x, y)
         else: # For choice=1 or anything else
             return self.straight_xy(x, y)
 
@@ -213,6 +210,17 @@ class Model:
             self.calc_rad_el()
         return self.spiral_xy(x, y)
 
+    def shift_xy(self, x, y):
+        cx = self.center_x + self.cur_layer*0.1
+        cy = self.center_y
+        return self.straight_xy(x, y, cx, cy)
+    
+    def shift_turn_xy(self, x, y):
+        cx = self.center_x + self.cur_layer*0.1
+        cy = self.center_y
+        return self.spiral_xy(x, y, cx, cy)
+    
+    
     # ----- GCODE FUNCTIONS ----- #
     def write_init_settings(self):
         global filename
@@ -290,7 +298,6 @@ def main():
     # Creates an object of the class. 
     model = Model()
 
-    #model.debug_plot()
     model.make_gcode()
 
 if __name__ == "__main__":
