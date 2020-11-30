@@ -1,4 +1,4 @@
-(File: gcodes/func3_8sides_8mmEdge.gcode)
+(File: ../gcodes/func3_8sides_8mmEdge.gcode)
 M104 S230
 M105
 M109 S230
@@ -1215,4 +1215,4 @@ G1 X115.52 Y104.48 Z15.0 F1556 E301.56
 G1 X117.81 Y110.0 Z15.0 F1556 E301.92
 M103
 G1 X117.81 Y110.0 Z25.0 F1556; Move away from print
-G92 X5 Y200 Z25.0 F1556; Move away from print
+G1 X5 Y200 Z25.0 F1556; Move away from print

@@ -21,7 +21,7 @@
         101.79,
         104.19
     ],
-    "bed_temp": 58,
+    "bed_temp": 60,
     "center_x": 110,
     "center_y": 110,
     "e_mode": 1,
@@ -29,7 +29,7 @@
     "edge_length": 8,
     "f_rate": 1556,
     "filename": "default.gcode",
-    "func_choice": 4,
+    "func_choice": 3,
     "nozzle_temp": 230,
     "num_layers": 100,
     "num_sides": 8,

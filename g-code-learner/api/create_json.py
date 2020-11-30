@@ -1,6 +1,6 @@
 import json
 
-data_file = '../g-code-learner/src/variables.json'
+data_file = '../src/variables.json'
 
 
 def make_json():
