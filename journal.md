@@ -137,7 +137,7 @@ Arman, please do this.
 ## User limits and Restrictions
 We made our tool to provide flexibility to the user in as many ways as possible. But there are still some restrictions to what the user can do due to a variety of reasons. 
 ### Printer limitations 
-- The user is constrained to a range of values in the following parameters due to the limitations of the the 3D printer we had available to us ([Creality Ender 3](https://www.creality3dofficial.com/products/official-creality-ender-3-3d-printer))
+- The user is constrained to a range of values in the following parameters due to the limitations of the the 3D printer we had available to us ([Creality Ender 5](https://www.creality3dofficial.com/products/creality-ender-5-3d-printer))
     - Print size. Parameters such as edge length, radius, and numbe of layers of the shape is limited by the size of the printer bed. 
     - Print temperature. Since we tested and sued only PLA, our print temperatures are based on the temps used by PLA and the temps the printer can handle without casing damage to itself. 
 
