@@ -164,13 +164,24 @@ Using our printer we printed multiple objects in different forms and settings to
 Overall the quality of the prints and the performance of this interactive tool was robust and better than expected. Below you can find some samples of the printed shapes.
 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600"> 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200"> 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200"> 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">
+
+```
+Figure 11: A Family picture of all of our mdoels and mode of our test prints.
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200"> 
+
+```
+Figure 12: Random (left) and Screw prints (center and right)
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">  
+
+```
+Figure 13: The Shift (two on the left) and Shift and Turn (two on the right) prints from different perspectives. 
+```
+
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">
