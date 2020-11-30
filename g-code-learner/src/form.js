@@ -59,7 +59,7 @@ export const PrintParamForm = () => {
       >
         <Form.Item label="Edge Length">
           <Tooltip title="This value defines the length of each edge in millimeter">
-            <InputNumber min={1} max={50} defaultValue="" />
+            <InputNumber min={1} max={50} defaultValue="10" />
           </Tooltip>
         </Form.Item>
         <Form.Item label="Z shift">
@@ -69,43 +69,49 @@ export const PrintParamForm = () => {
               max={5}
               precision={1}
               step={0.1}
-              defaultValue=""
+              defaultValue="0.2"
             />
           </Tooltip>
         </Form.Item>
-        <Form.Item label="Bed Temperature" defaultValue="">
+        <Form.Item label="Bed Temperature">
           <Tooltip title="Defines the bed temperature (a value between 0 and 70 degree Celsius)">
-            <InputNumber min={0} max={70} />
+            <InputNumber min={0} max={70} defaultValue="60" />
           </Tooltip>
         </Form.Item>
-        <Form.Item label="Nozzle Temperature" defaultValue="">
+        <Form.Item label="Nozzle Temperature">
           <Tooltip title="Defines the bed temperature ">
-            <InputNumber min={180} max={280} />
+            <InputNumber min={180} max={280} defaultValue="210" />
           </Tooltip>
         </Form.Item>
-        <Form.Item label="Extrusion Rate" defaultValue="">
+        <Form.Item label="Extrusion Rate">
           <Tooltip title="The amount offilament in millimeter per centimeter of the print">
-            <InputNumber min={0} max={1} precision={2} step={0.01} />
+            <InputNumber
+              min={0}
+              max={1}
+              precision={2}
+              step={0.01}
+              defaultValue="0.5"
+            />
           </Tooltip>
         </Form.Item>
-        <Form.Item label="Feed Rate" defaultValue="">
+        <Form.Item label="Feed Rate">
           <Tooltip title="The speed of nozzle (mm per minute)">
-            <InputNumber min={500} max={3000} />
+            <InputNumber min={500} max={3000} defaultValue="1400" />
           </Tooltip>
         </Form.Item>
-        <Form.Item label="Number of Sides" defaultValue="">
+        <Form.Item label="Number of Sides">
           <Tooltip title="It defines the number of edges of the base layer">
-            <InputNumber min={2} max={10000000} />
+            <InputNumber min={2} max={10000000} defaultValue="4" />
           </Tooltip>
         </Form.Item>
-        <Form.Item label="Radius" defaultValue="">
+        <Form.Item label="Radius">
           <Tooltip title="The longest distance from the center to a vertex of the shape">
-            <InputNumber min={1} max={100} />
+            <InputNumber min={1} max={100} defaultValue="" />
           </Tooltip>
         </Form.Item>
         <Form.Item label="Number of Layers">
           <Tooltip title="">
-            <InputNumber min={1} max={300} defaultValue="" />
+            <InputNumber min={1} max={300} defaultValue="100" />
           </Tooltip>
         </Form.Item>
         <Form.Item name="shapess" label="Form Function">
@@ -128,7 +134,13 @@ export const PrintParamForm = () => {
           {({ getFieldValue }) => {
             return getFieldValue("shapess") === "wave" ? (
               <Form.Item name="wave_amplitude" label="Wave Amplitude">
-                <InputNumber min={0.1} max={50} precision={1} step={0.1} />
+                <InputNumber
+                  min={0.1}
+                  max={50}
+                  precision={1}
+                  step={0.1}
+                  defaultValue="2.5"
+                />
               </Form.Item>
             ) : null;
           }}
@@ -142,7 +154,7 @@ export const PrintParamForm = () => {
           {({ getFieldValue }) => {
             return getFieldValue("shapess") === "random" ? (
               <Form.Item name="random_rate" label="Random Rate">
-                <InputNumber min={1} max={10} />
+                <InputNumber min={1} max={10} defaultValue="5" />
               </Form.Item>
             ) : null;
           }}
