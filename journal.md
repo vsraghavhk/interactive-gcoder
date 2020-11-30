@@ -9,25 +9,27 @@ Hands-on learning of G-code using a Python tool.**
 [Arman Rezaee](https://github.com/armanrze) (827009201)
 
 
-## Table of contents TO BE UPDATED
+## Table of contents 
 
-- Introduction
-- Methodology
-- UI Design (Frontend)
-- Backend implementation
-- Print Results and analysis
-   - General analysis
-   - Analysis of different designs
-      - Random
-      - Truncated Pyramid
-      - Hourglass
-      - Twist
-      - Flask
-      - Waved Pattern
-      - G-code analyzer
-- User limits and restrictions
-- Conclusion
-- References
+- [Introduction](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#introduction)
+- [Methodology](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#methodology)
+- [UI Design (Frontend)](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#ui-design-frontend)
+- [Backend implementation](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#backend-implementation)
+    - [Setting the parameters through gcode](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#setting-the-parameters-through-gcode)
+    - [Patterns](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#pattern-straight)
+        - Straight
+        - Spiral
+        - Wave
+        - Random
+        - Screw
+        - Shift
+        - Shift and Turn
+- [Some Interesting print results and analysis](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#some-interesting-print-results-and-analysis)
+- [User Limitations and Restrictions](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#user-limits-and-restrictions)
+    - Printer Limitations
+- [Future Work](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#future-work)
+- [Conclusion](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#conclusion)
+- [References](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#references)
 
 
 ## Introduction
@@ -142,7 +144,7 @@ We made our tool to provide flexibility to the user in as many ways as possible.
 - Limitations on complexity.
     - complex model shapes and structures. The shapes themselves were purposely kept simple to enable the users to rapidly prototype and focus on learning the basics of gcode. We did have inital plans on adding concave shapes, but the complexity of writing gcode for such shapes exponentially increase. To maintain quality in our our and to amnage time effectively, we decided to stick with simpler shapes. 
 
-### Future Work
+## Future Work
 Both our frontend and backend are design with future expansions with scalability and modularity in mind. Our backend is a small package API which can both be edited by a user as well as imported and used by a user. We took our time in implementing these properties in our work with some future work in mind. 
 - Adding capabilities for concave structures. This is a strenuous but achievable goal given that the current code allows us to do a wide variety of layer-wise operations already. 
 - Providing the user the ability to change parameters during the middle of or print/gcode generation. This type of real time editing capabilities are a little more complex to add, but stilla chievable with time and some clever programming. 
@@ -153,11 +155,12 @@ Hands-on experience in modifying g-code is a powerful way to teach how 3D printe
 
 ## References
 
-1. G-code simulator: ​https://jherrm.com/gcode-viewer
-2. G-code viewer: ​https://ncviewer.com
-3. G-code Analyser:​ ​https://www.gcodeanalyser.com/
-4. G-code slicer and simulator: ​Ultimaker Cura
-5. Our Python code and experiments can be found at:
-    https://github.com/vsraghavhk/digital-fabrication-studio/tree/main/midterm
+1. [G-code Wiki](https://reprap.org/wiki/G-code)
+2. [jherrm G-code simulator](​https://jherrm.com/gcode-viewer)
+3. [NCViewer - G-code viewer](https://ncviewer.com)
+4. [G-code Analyzer](https://www.gcodeanalyser.com/)
+5. [Ultimaker Cura 3D slicer and gcode analyzer](https://ultimaker.com/software/ultimaker-cura)
+6. Our Python code and experiments can be [found in our github!](https://github.com/vsraghavhk/interactive-gcoder)
+    
 
 
