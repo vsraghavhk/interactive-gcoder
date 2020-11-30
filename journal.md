@@ -166,7 +166,7 @@ Overall the quality of the prints and the performance of this interactive tool w
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600"> 
 
 ```
-Figure 11: A Family picture of all of our mdoels and mode of our test prints.
+Figure 11: A Family picture of all of our models and most of our test prints.
 ```
 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200"> 
