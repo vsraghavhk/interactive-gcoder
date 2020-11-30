@@ -74,10 +74,10 @@ Then comes the predefined gcode to print a horizontal line across one edge of th
 
 The [Methodology section](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#methodology) of this journal explains how the layer wise gcode is structured along with Figure 1 which shows the `(begin model)` tag explained in the previous paragraph. Figure x here also shows the predfind gcode to validate print settings. Figure X+1 shows what it translates to in the actual printing process. 
 
-![Figure X: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/FigureX.png)
-![Figure X+1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/gcode-snippet.png" width="400"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/printer.jpg" width="400">
+
 ```
-Figure X: (left) Predifined gcode snippet for Validation; Figure X+1: (right) Photo of what the gcode from Figure X prints.
+Figure X: (left) Predifined gcode snippet for Validation; (right) Photo of what the gcode from Figure X prints.
 ```
 Once can note that the E value (`Extrusion value`) goes up consistently as the layers increase. The E value represents how much filament is to be extruded by the time the nozzle moves to the coordinates given. For example in Figure 1, the E value is seen to go up consistently by 0.4 for every edge (1.2 over a layer). This means that the printer will extrude 0.4mm of filament while moving to each point. The number shown is the `Absolute` value since the the extruder was reset. This can also be set to `Relative` mode, in which case all E values will become 0.4 rather than incraeaseing by 0.4 every time. One can also note that some lines have E values while others don't. This is intentional since missing the E value in a line is same as telling the printer to not extrude any filament while moving to the coordinates given. The user can change the E value by changing `E_rate` or extrusion rate which we define in millmeters of filament used per unit centimeter. 
 
@@ -92,14 +92,9 @@ Let us now get into the different functions the backend uses to build the model'
 ### Pattern: Straight
 This pattern or shape is simply the base layer copied on top of itself for howmany ever layers the print is defined for by the use. It basically creates a hollow structure with no features (Apart from print lines) on the surface. The gcode, 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="100"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="150"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="150">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png" width="200"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png" width="300"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="300">
+
 ```
-![Straight-gcode](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight-gcode.png)
-![Straight-model](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/stright-model.png)
-![Straight-print](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg)
-```
-```
-ADD IMAGES
 Figure X+2: Gcode of a Stright pattern [Note that the X and Y values don't change every layer]; Figure X+3: ncviewer model; Figure x+4: PRinted sample;
 ```
 
