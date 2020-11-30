@@ -42,7 +42,7 @@ Gcode (or Geometry code) is a programming language used by machines to understan
 For example, let us consider a cube print (Square layers). The square has just four corners. Which means we only need to define the points for the tool to move through at each layer. Each layer starts and stops at the same position (Hence 5 points needs to be defined). The amount the extrude can be defined based on how long it moves and how much material we want to use per usit distance. In our program, we use E_rate or extrusion rate to define how many millimeters of filament to use per unit cm of print. The F_rate or feed rate corresponds to how fast the nozzle needs to move (in mm/minute). As we can see in figure 1, these values are defined by the X, y, Z, F, and E values in the g-code. This concept can simply be extended to pentagons, hexagons, or pretty much any n-sided shape. 
 
 
-![Figure 1: Code snippet](../images/Figure1.png)
+![Figure 1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
 ```
 Insert Figure 1: Screenshot of 1 layer of g-code of a square.
 ```
