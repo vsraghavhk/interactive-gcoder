@@ -41,8 +41,10 @@ Gcode (or Geometry code) is a programming language used by machines to understan
 
 For example, let us consider a cube print (Square layers). The square has just four corners. Which means we only need to define the points for the tool to move through at each layer. Each layer starts and stops at the same position (Hence 5 points needs to be defined). The amount the extrude can be defined based on how long it moves and how much material we want to use per usit distance. In our program, we use E_rate or extrusion rate to define how many millimeters of filament to use per unit cm of print. The F_rate or feed rate corresponds to how fast the nozzle needs to move (in mm/minute). As we can see in figure 1, these values are defined by the X, y, Z, F, and E values in the g-code. This concept can simply be extended to pentagons, hexagons, or pretty much any n-sided shape. 
 
+
+![Figure 1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
 ```
-Insert Figure 1: Screenshot of 1 layer of g-code of a square.
+Figure 1: G-code snippet of a couple of layers of a cube.
 ```
 
 Note that Figure 1 shows the structure of g-code. Each layer has the same structure with just changes to the values. Now that we know how gcode works every layer, we can start understanding how to create some interesting shapes, but simple changing the vertex points at every layer. If we want to twist each layer as it goes up, we can simply move the vertices along its circum-circle so as to create a 1-degree shift at every layer. Or we can randomly move the vertices away or twoards the center of the shape by a small amount at every layer to create a randomized texture. While different functions canbe applied to each layer, one should note that when printing a layer, there should be a layer beneath it to support the extrusion. If there is not, the extruded filament will fall creating a printing failure or a work of art! But this entails some risk to the printer itself. If the next layer is too close the previous layer, the extrusion will ahve no space to come out and might clog the nozzle. This required us to instill some restrictions to the tool so that the user can focus on creating interesting shapes, without having to worry too much about damaging their printer. 
@@ -50,11 +52,27 @@ Note that Figure 1 shows the structure of g-code. Each layer has the same struct
 The tool consists of a frontend written in React (Javascript) and backend written in Python. The frontend, written in React (Javascript) allows the user to manipulate parameters using an UI, and obtain the final gcode as well as simulate the model in real time. The backend is the "brain" of the tool which takes in the user inputs through a JSON file updated by the front end and generates the gcode of the 3D model and gives it abck for the frontend to display and interpret it. The backend is written using Python, a simple and effective programming language for beginners.  
 
 ## UI Design (Frontend)
+This part will be updated by Arman. 
 This part is where we will provide images of the UI design and what the user will see before printing
 
 This will also show the alert design and how they are showed. It will also explain how alerts work and what the user can or can not do. 
 
 ## Backend Implementation
+As summarized earlier, the backend is written in Python with the Flask API to connect with the frontend. The python code is written in Python3 (3.9.0) and is also an API to our tool. The entire program is written as a single class with class methods (functions) and object instances (variables). 
+The parameters set by the user are stored in a JSON (JavaScript Object Notation) file which can be fetched and updated by both the frontend and backend. 
+Once the JSON file is read, the parameters are parsed into object instances of the `Model` class. The parameters are then cross validated to avoid conflicts and print failures, then sued for the gcode generation. 
+### Gcode Generation
+First the bed and nozzle temperatures are set along with wait commands. This ensures that the temperatures are stable before the printing process starts. 
+Then comes the predefined gcode to print a horizontal line across one edge of the print bed. This is to make sure the nozzle is running and the extrusion and printing works fine and to reset the extruder before we start printing the model itself. This is a common practice in 3D pritning (either as a line or as on outline to the base layer) and especially important in our tool as it allows the user to quickly check if their extrusion rate and feed rate values are as they expected. If this line doesn't print properly, the user can immediately stop the print, change the values and try again, saving filament and time. After this is where the actual layer-wise gcode begins. This is noted by the `(begin model)` comment in gcode, automatically inserted by the python program. 
+
+The Methodology section of this journal explains how the layer wise gcode is structured along with Figure 1 which shows the `(begin model)` tag explained in the previous paragraph. Figure x here also shows the predfind gcode to validate print settings. Figure X+1 shows what it translates to in the actual printing process. 
+
+![Figure X: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
+![Figure X+1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
+```
+Figure X: Predifined gcode snippet for Validation; Figure X+1: Photo of what the gcode from Figure X prints.
+```
+
 Will be edited by Raghav. 
 This section will provide the details of how the backend works. 
 The backend is written in python for all data handling, calculations, and gcode creation. 
