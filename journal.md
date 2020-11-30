@@ -1,10 +1,7 @@
 # Project Journal
 **CSCE 689
-
 **Digital Fabrication Studio
-
 **Fall 2020
-
 **Hands-on learning of G-code using a Python tool.
 
 
