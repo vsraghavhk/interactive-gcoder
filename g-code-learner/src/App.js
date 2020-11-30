@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 //import { Variable_3D } from "./variables";
-//import { PrintParamForm } from "./form";
+import { PrintParamForm } from "./form";
 import { Layout, Row, Col } from "antd";
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       {/* <Variable_3D  />
-      <PrintParamForm /> 
+      
       <p>The current time is {currentTime}.</p>*/}
       <Layout>
         <Header>
@@ -43,17 +43,7 @@ function App() {
           <Content>
             <Row gutter={24} type="flex">
               <Col xs={24} sm={10} md={10} style={{ backgroundColor: "gray" }}>
-                sider
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+                <PrintParamForm />
               </Col>
               <Col xs={24} sm={14} md={14}>
                 Visualization
