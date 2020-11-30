@@ -11,6 +11,10 @@ The next step is to install the node packages
 
 ### `yarn install`
 
+In another terminal run the following command to run api
+
+### `yarn start-api`
+
 ## Available Scripts
 
 In the 3d_project directory, you can run:
