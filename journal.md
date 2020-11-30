@@ -55,6 +55,7 @@ This part is where we will provide images of the UI design and what the user wil
 This will also show the alert design and how they are showed. It will also explain how alerts work and what the user can or can not do. 
 
 ## Backend Implementation
+Will be edited by Raghav. 
 This section will provide the details of how the backend works. 
 The backend is written in python for all data handling, calculations, and gcode creation. 
 The values are written into a JSON file, updated by python and the front end. 
