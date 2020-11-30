@@ -18,5 +18,7 @@ Changing values in the file manually should be same as changing the values in th
 
 # Media
 Photos, GIFs, and Videos are available in the [images folder](https://github.com/vsraghavhk/interactive-gcoder/tree/main/images). 
+
 The [gcodes folder](https://github.com/vsraghavhk/interactive-gcoder/tree/main/gcodes) has many sample gcodes we made during our testing. 
+
 If you would like to recreate the prints [shown in the journal](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#some-interesting-print-results-and-analysis), use print1.gcode to print8.gcode.  
