@@ -104,16 +104,28 @@ xk = center_x + radius * cos((2*pi*k/num_sides)+(cur_layer*0.0174533))
 yk = center_y + radius * sin((2*pi*k/num_sides)+(cur_layer*0.0174533))
 ```
 
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral-model.png" width="250"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="250">
+
+```
+Figure 5: NCViewer model vs a couple of test prints of the Spiral design with different layer heights (0.24 for left and 0.15 for right)
+```
+
 ### Pattern: Wave
 For this pattern the vertexes and slowly moved away from the center every layer adn then the direction is reversed and the points move closer to the center. This is made possible by changing the radius of the shape at every layer, and recalculating the vertex points and edge lengths accordingly. The direction of change reverses when the the vertex 2.5mm wider or narrower than the original starting position.  
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave-model.png" width="250"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="250">
+
 ```
-ADD IMAGE
+Figure 6: A NCViewer model of the wave and a small print of the same.
 ```
 
 ### Pattern: Random
 At every layer, the verices either move away or towards the center at random within a range given by the user. The Random range set by the user determines the maximum change in radius in 0.1mm step at every layer. If the value is set to 10, then the next layer can be changed anywhere from 0.5mm away from center or 0.5mm towards the center. Our print below gave us an interesting result where the shape eventually converged at the center a few times. 
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random-model.png" width="250"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="250">
+
 ```
-ADD IMAGES
+Figure 7: Random model design vs actual print. We can clearly see where the print starts to fail when there is no support from previous layer. (But its art!)
 ```
 
 ### Pattern: Screw
@@ -137,11 +149,20 @@ ADDD IMAGE
 ## Some interesting print results and analysis
 This sub division will provide images and analysis of some prints we made using our tool.
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200"><img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600"> 
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200"> 
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200"> 
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
 
 
 
