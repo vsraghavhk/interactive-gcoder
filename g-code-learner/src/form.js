@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
-} from "antd";
+import { Form, Button, Select, InputNumber, Tooltip } from "antd";
 
 export const PrintParamForm = () => {
   const [componentSize, setComponentSize] = useState("default");
@@ -18,9 +8,42 @@ export const PrintParamForm = () => {
     setComponentSize(size);
   };
 
+  const [form] = Form.useForm();
+  const onShapeChange = (value) => {
+    switch (value) {
+      case "1":
+        return;
+      case "2":
+        return;
+      case "3":
+        form.setFieldsValue({ wave_amplitude: "Hi there!" });
+        return;
+      case "4":
+        form.setFieldsValue({ note: "Hi there!" });
+        return;
+      case "5":
+        form.setFieldsValue({ note: "Hi there!" });
+        return;
+      case "6":
+        form.setFieldsValue({ note: "Hi there!" });
+        return;
+      case "7":
+        form.setFieldsValue({ note: "Hi there!" });
+        return;
+    }
+  };
+  const onReset = () => {
+    form.resetFields();
+  };
+  const tailLayout = {
+    wrapperCol: { offset: 5, span: 16 },
+  };
+
   return (
     <>
       <Form
+        name="control-hooks"
+        form={form}
         labelCol={{
           span: 8,
         }}
@@ -34,59 +57,113 @@ export const PrintParamForm = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <Form.Item label="Form Function">
-          <Select>
-            <Select.Option value="1">Straight</Select.Option>
-            <Select.Option value="2">Spiral</Select.Option>
-            <Select.Option value="3">Wave</Select.Option>
-            <Select.Option value="4">Screw</Select.Option>
-            <Select.Option value="5">Random</Select.Option>
-            <Select.Option value="6">Shift</Select.Option>
-            <Select.Option value="7">Shift and turn</Select.Option>
-          </Select>
-        </Form.Item>
         <Form.Item label="Edge Length">
-          <InputNumber />
+          <Tooltip title="This value defines the length of each edge in millimeter">
+            <InputNumber min={1} max={50} defaultValue="" />
+          </Tooltip>
         </Form.Item>
         <Form.Item label="Z shift">
-          <InputNumber />
+          <Tooltip title="This value defines the shift at z direction on each layer in millimeter">
+            <InputNumber
+              min={0.1}
+              max={5}
+              precision={1}
+              step={0.1}
+              defaultValue=""
+            />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Bed Temperature">
-          <InputNumber />
+        <Form.Item label="Bed Temperature" defaultValue="">
+          <Tooltip title="Defines the bed temperature (a value between 0 and 70 degree Celsius)">
+            <InputNumber min={0} max={70} />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Nozzle Temperature">
-          <InputNumber />
+        <Form.Item label="Nozzle Temperature" defaultValue="">
+          <Tooltip title="Defines the bed temperature ">
+            <InputNumber min={180} max={280} />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Extrusion Rate">
-          <InputNumber />
+        <Form.Item label="Extrusion Rate" defaultValue="">
+          <Tooltip title="The amount offilament in millimeter per centimeter of the print">
+            <InputNumber min={0} max={1} precision={2} step={0.01} />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Feed Rate">
-          <InputNumber />
+        <Form.Item label="Feed Rate" defaultValue="">
+          <Tooltip title="The speed of nozzle (mm per minute)">
+            <InputNumber min={500} max={3000} />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Number of Sides">
-          <InputNumber />
+        <Form.Item label="Number of Sides" defaultValue="">
+          <Tooltip title="It defines the number of edges of the base layer">
+            <InputNumber min={2} max={10000000} />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Radius">
-          <InputNumber />
+        <Form.Item label="Radius" defaultValue="">
+          <Tooltip title="The longest distance from the center to a vertex of the shape">
+            <InputNumber min={1} max={100} />
+          </Tooltip>
         </Form.Item>
         <Form.Item label="Number of Layers">
-          <InputNumber />
+          <Tooltip title="">
+            <InputNumber min={1} max={300} defaultValue="" />
+          </Tooltip>
         </Form.Item>
-        <Form.Item label="Wave Amplitude">
-          <InputNumber />
-        </Form.Item>
-        <Form.Item label="Randum Rate">
-          <InputNumber />
-        </Form.Item>
-        <Form.Item label="Extrusion Mode">
-          <Select>
-            <Select.Option value="1">Absolute</Select.Option>
-            <Select.Option value="2">Relative</Select.Option>
+        <Form.Item name="shapess" label="Form Function">
+          <Select defaultValue="straight">
+            <Select.Option value="straight">Straight</Select.Option>
+            <Select.Option value="spiral">Spiral</Select.Option>
+            <Select.Option value="wave">Wave</Select.Option>
+            <Select.Option value="screw">Screw</Select.Option>
+            <Select.Option value="random">Random</Select.Option>
+            <Select.Option value="shift">Shift</Select.Option>
+            <Select.Option value="shiftrun">Shift and turn</Select.Option>
           </Select>
         </Form.Item>
+        <Form.Item
+          noStyle
+          shouldUpdate={(prevValues, currentValues) =>
+            prevValues.shapess !== currentValues.shapess
+          }
+        >
+          {({ getFieldValue }) => {
+            return getFieldValue("shapess") === "wave" ? (
+              <Form.Item name="wave_amplitude" label="Wave Amplitude">
+                <InputNumber min={0.1} max={50} precision={1} step={0.1} />
+              </Form.Item>
+            ) : null;
+          }}
+        </Form.Item>
+        <Form.Item
+          noStyle
+          shouldUpdate={(prevValues, currentValues) =>
+            prevValues.shapess !== currentValues.shapess
+          }
+        >
+          {({ getFieldValue }) => {
+            return getFieldValue("shapess") === "random" ? (
+              <Form.Item name="random_rate" label="Random Rate">
+                <InputNumber min={1} max={10} />
+              </Form.Item>
+            ) : null;
+          }}
+        </Form.Item>
 
-        <Form.Item label="Button">
-          <Button>Button</Button>
+        <Form.Item label="Extrusion Mode">
+          <Tooltip title="">
+            <Select defaultValue="1">
+              <Select.Option value="1">Absolute</Select.Option>
+              <Select.Option value="2">Relative</Select.Option>
+            </Select>
+          </Tooltip>
+        </Form.Item>
+
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit and Download
+          </Button>
+          <Button htmlType="button" onClick={onReset}>
+            Reset
+          </Button>
         </Form.Item>
       </Form>
     </>

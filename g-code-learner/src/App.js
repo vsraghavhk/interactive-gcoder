@@ -43,14 +43,15 @@ function App() {
         <Layout>
           <Content>
             <Row gutter={24} type="flex">
-              <Col xs={24} sm={10} md={10} style={{ backgroundColor: "gray" }}>
+              <Col
+                xs={24}
+                sm={24}
+                md={24}
+                style={{ backgroundColor: "lightgray" }}
+              >
                 <h3>Printer and Shape Parameters</h3>
 
                 <PrintParamForm />
-                <br />
-              </Col>
-              <Col xs={24} sm={14} md={14}>
-                Visualization
               </Col>
             </Row>
           </Content>
