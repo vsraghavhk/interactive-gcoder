@@ -135,7 +135,24 @@ ADDD IMAGE
 
 ## Some interesting print results and analysis
 This sub division will provide images and analysis of some prints we made using our tool.
-Arman, please do this. 
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="400">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
+
+
+
 
 ## User limits and Restrictions
 We made our tool to provide flexibility to the user in as many ways as possible. But there are still some restrictions to what the user can do due to a variety of reasons. 
