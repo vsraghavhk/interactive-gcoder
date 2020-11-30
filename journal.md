@@ -1,8 +1,7 @@
-# This is the mid-term report. Final journal will be updated here as soon as it is done. 
 **CSCE 689
 Digital Fabrication Studio
 Fall 2020
-Hands-on learning of G-code using a Python tool.**
+Hands-on learning of G-code using a Python tool.*
 
 [Raghav Hari Krishna V S](https://github.com/vsraghavhk) (427009525)
 
