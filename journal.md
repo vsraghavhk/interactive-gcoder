@@ -11,8 +11,8 @@ Arman Rezaee (827009201)
 
 - Introduction
 - Methodology
-- UI Design (Frontend)
-- Backend implementation
+   - UI Design (Frontend)
+   - Backend implementation
 - Print Results and analysis
    - General analysis
    - Analysis of different designs
@@ -30,67 +30,24 @@ Arman Rezaee (827009201)
 
 ## Introduction
 
-Learning g-code is the best way to learn the foundation of digital fabrication including CNC
-milling and 3D-printing. Unfortunately there is no straightforward and hands-on teaching materials for
-people who are starting in digital fabrication to understand g-code. The goal of this project is to create a
-tool for novice users to generate different shapes from a simple cube with no or minimal need for support
-structures to print.
-In order to create a tool for flexible modifications, a simple cube with no top was chosen as the base
-model for our g-code. Since the cube has the same X-Y coordinates at each corner with changes only in
-the Z axis, it is easier to read the code, imagine the position, and thus understand the path of the tool.
-Moreover, a hollow cube does not need any support material to be printed. To simplify the process, the
-g-code header was not modified and the same header was used for all designs. In our case, the G-code
-defined the initial parameters such as nozzle temperature, bed temperature, extrusion mode (absolute
-mode in our case), and the code to reset the extruder to home position. Figure 1 illustrates the original
-model given in the base g-code using the NCviewer environment.
-Figure 1. 30mm by 30mm cube
+Learning g-code is the best way to learn the foundation of digital fabrication including CNC milling and 3D-printing. Unfortunately there is no straightforward and hands-on teaching materials for people who are starting in digital fabrication to understand g-code. The goal of this project is to create a tool for novice users to help them generate different shapes and edit one parameter at a time and see the effects of it in the 3D print.
+
+The shape of the basic structure can be chosen by the user through the UI presented to them. The UI also allows the user to change certain model parameters to change the 3D model and also change some print parameters to change how the actual 3D print comes out. In order to make it a rapid prototyping tool, the structure is single-walled with no massive overhangs or support structures, so that print times are as low as possible. This allows beginners to play around with the values easily and acquire an in-depth understand of how each parameter defines and shapes the 3D model. Moreover, the backend program is built as an importable python module for users who may want to use it as an API to develop their own functions and structures. 
 
 
 ## Methodology
 
-The main defining factor for each shape is the number of layers, width and length of base layer, printing
-speed (F) and extrusion speed (E). Our code is designed in a way to give the user flexibility to create
-their own shape. The cube’s simplicity is because it has just four corners. Which means we only need to
-define the points for the tool to move through at each layer. As figure 2 illustrates, each layer starts and
-stops at the same position (Hence 5 points defined) and note that the extrusion rate increases as nozzle
-moves (E value decides how much filament is to be extruded up until that point).
-```
-Figure 2. One layer of the cube.
-```
-The second important factor that needs to be considered is the maximum x-y movement of the nozzle
-compared to the previous layer. We decided to limit the movement to 2 millimeter for standard nozzle
-size of 4mm which eliminates a need for support structure.
-From the beginning, our intention was to make everything easier for the end user, hence the code is
-written in a way that is very intuitive. Figure 3 shows the simple command line user interface which is
-made directly through Python.
-```
-Figure 3. User interface
-```
+Gcode (or Geometry code) is a programming language used by machines to understand which points in space to move to, at what speed, and what to do while going there. For complex structures, gcode can be ridiculously long and meticulously detailed. This will make it hard to understand how the gcode corresponds to the model. Hence we decided to start witha  simple structure. The basic model used here is simple enough to be defined using number of sides, length of each side, and the numbers of layers (height). This allows for simple gcode generation since we only need to know the vertices of the shape to go to each layer, the amount of material to extrude, and what speed to move there. Once we know these details for a single layer, we can easily repeat the process for the rest of the layers, since the vertices will not change drastically. 
 
-In the user interface, the code gives the user the option to choose from a set of predefined shapes. Some
-shapes, such as ‘Twist’ show further options to choose the direction of twist. All shapes give the user the
-option to choose the number of layers to print the shape for. At the end of the selection, the gcode is
-automatically stored in a folder, in the Figure 3 example it will be “twist_150layers.gcode”.
-Figure 4 shows the 6 standard forms (apart from the simple cube) that were developed from the base
-shape. More complex shapes can be made by combining the functions which define these shapes.
-```
-Figure 4. Modified forms
-```
-Our approach was to generate the g-code for the model, by formulating each layer. As we saw in Figure 2,
-the g-code can be read in segments. Each segment defines the tool path for a single layer. Our Python
-code simply calculates the position of the 4 corners using different functions for different shapes, and
-writes the segment into the new g-code. This allows the user to go ahead and modify the way the
-functions calculate the points, or change the default parameters to create new and interesting shapes. As
-the user changes one parameter at a time, they immediately start to understand how modifications to
-g-code affect the end result.
-Figure 5 shows the difference in g-code between the original cube and the twisted cube generated.
-One can note that the structure of the g-code is the same. Each segment correlates to each layer. As
-highlighted, the only difference would be the position of the X and Y coordinates, which move by 0.2mm
-each layer, along the edge of the base cube (Thus causing a twist effect).
+For example, let us consider a cube print (Square layers). The square has just four corners. Which means we only need to define the points for the tool to move through at each layer. Each layer starts and stops at the same position (Hence 5 points needs to be defined). The amount the extrude can be defined based on how long it moves and how much material we want to use per usit distance. In our program, we use E_rate or extrusion rate to define how many millimeters of filament to use per unit cm of print. The F_rate or feed rate corresponds to how fast the nozzle needs to move (in mm/minute). As we can see in figure 1, these values are defined by the X, y, Z, F, and E values in the g-code. This concept can simply be extended to pentagons, hexagons, or pretty much any n-sided shape. 
 
 ```
-Figure 5. Simple cube and twisted cube difference
+Insert Figure 1: Screenshot of 1 layer of g-code of a square.
 ```
+
+Note that Figure 1 shows the structure of g-code. Each layer has the same structure with just changes to the values. Now that we know how gcode works every layer, we can start understanding how to create some interesting shapes, but simple changing the vertex points at every layer. If we want to twist each layer as it goes up, we can simply move the vertices along its circum-circle so as to create a 1-degree shift at every layer. Or we can randomly move the vertices away or twoards the center of the shape by a small amount at every layer to create a randomized texture. While different functions canbe applied to each layer, one should note that when printing a layer, there should be a layer beneath it to support the extrusion. If there is not, the extruded filament will fall creating a printing failure or a work of art! But this entails some risk to the printer itself. If the next layer is too close the previous layer, the extrusion will ahve no space to come out and might clog the nozzle. This required us to instill some restrictions to the tool so that the user can focus on creating interesting shapes, without having to worry too much about damaging their printer. 
+
+The tool consists of a frontend written in React (Javascript) and backend written in Python. The frontend, written in React (Javascript) allows the user to manipulate parameters using an UI, and obtain the final gcode as well as simulate the model in real time. The backend is the "brain" of the tool which takes in the user inputs through a JSON file updated by the front end and generates the gcode of the 3D model and gives it abck for the frontend to display and interpret it. The backend is written using Python, a simple and effective programming language for beginners.  
 
 ## UI Design (Frontend)
 This part is where we will provide images of the UI design and what the user will see before printing
