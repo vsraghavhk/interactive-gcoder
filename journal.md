@@ -96,6 +96,35 @@ xk = center_x + radius * cos((2*pi*k/num_sides)+(cur_layer*0.0174533))
 yk = center_y + radius * sin((2*pi*k/num_sides)+(cur_layer*0.0174533))
 ```
 
+### Pattern: Wave
+For this pattern the vertexes and slowly moved away from the center every layer adn then the direction is reversed and the points move closer to the center. This is made possible by changing the radius of the shape at every layer, and recalculating the vertex points and edge lengths accordingly. The direction of change reverses when the the vertex 2.5mm wider or narrower than the original starting position.  
+```
+ADD IMAGE
+```
+
+### Pattern: Random
+At every layer, the verices either move away or towards the center at random within a range given by the user. The Random range set by the user determines the maximum change in radius in 0.1mm step at every layer. If the value is set to 10, then the next layer can be changed anywhere from 0.5mm away from center or 0.5mm towards the center. Our print below gave us an interesting result where the shape eventually converged at the center a few times. 
+```
+ADD IMAGES
+```
+
+### Pattern: Screw
+This interesting pattern is made by combining the spiral pattern with a reducing radius, resembling a small wood screw. But the radius does not decrease below 3mm, below which only the spiralpattern is made. We can see the itneresting patterns caused by the layers in the image below. 
+```
+ADD IMAGES
+```
+
+### Pattern: Shift
+The previous designs were made by changing the position of the vertices at each layer. But this pattern is made by shifting the center across the print bed. The original center for this print is at ```(x, y) = (110, 110)```. But as the layer increases, the center is moved by 0.1mm every layer along the X axis and the vertices are recalculated. This creates the pattern resembling a [Penne pasta](https://en.wikipedia.org/wiki/Penne). 
+```
+ADD IMAGES
+```
+
+### Pattern: Shift and Turn
+This design takes the Shift pattern one step further by combining the spiral pattern with it. So at every layer the vertices rotate around the center by 1 degree, and the center shifts by 0.1mm and the vertices are recalculated. Thus it gives this very cool effect. This design also shows that the python code is design with modularity in mind, i.e. a user interested in modifying the code, can simply combine modules as is and create new shapes and patterns. 
+```
+ADDD IMAGE
+```
 
 ## Print results and analysis
 This sub division will provide images and analysis of the print made by with the settings chosen by the user.
