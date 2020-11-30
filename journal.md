@@ -61,7 +61,7 @@ This will also show the alert design and how they are showed. It will also expla
 As summarized earlier, the backend is written in Python with the Flask API to connect with the frontend. The python code is written in Python3 (3.9.0) and is also an API to our tool. The entire program is written as a single class with class methods (functions) and object instances (variables). 
 The parameters set by the user are stored in a JSON (JavaScript Object Notation) file which can be fetched and updated by both the frontend and backend. 
 Once the JSON file is read, the parameters are parsed into object instances of the `Model` class. The parameters are then cross validated to avoid conflicts and print failures, then sued for the gcode generation. 
-### Gcode Generation
+### Setting the parameters through gcode.
 First the bed and nozzle temperatures are set along with wait commands. This ensures that the temperatures are stable before the printing process starts. 
 Then comes the predefined gcode to print a horizontal line across one edge of the print bed. This is to make sure the nozzle is running and the extrusion and printing works fine and to reset the extruder before we start printing the model itself. This is a common practice in 3D pritning (either as a line or as on outline to the base layer) and especially important in our tool as it allows the user to quickly check if their extrusion rate and feed rate values are as they expected. If this line doesn't print properly, the user can immediately stop the print, change the values and try again, saving filament and time. After this is where the actual layer-wise gcode begins. This is noted by the `(begin model)` comment in gcode, automatically inserted by the python program. 
 
@@ -70,8 +70,19 @@ The [Methodology section](https://github.com/vsraghavhk/interactive-gcoder/blob/
 ![Figure X: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/FigureX.png)
 ![Figure X+1: Code snippet](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Figure1.png)
 ```
-Figure X: Predifined gcode snippet for Validation; Figure X+1: Photo of what the gcode from Figure X prints.
+Figure X: (left) Predifined gcode snippet for Validation; Figure X+1: (right) Photo of what the gcode from Figure X prints.
 ```
+Once can note that the E value (`Extrusion value`) goes up consistently as the layers increase. The E value represents how much filament is to be extruded by the time the nozzle moves to the coordinates given. For example in Figure 1, the E value is seen to go up consistently by 0.4 for every edge (1.2 over a layer). This means that the printer will extrude 0.4mm of filament while moving to each point. The number shown is the `Absolute` value since the the extruder was reset. This can also be set to `Relative` mode, in which case all E values will become 0.4 rather than incraeaseing by 0.4 every time. One can also note that some lines have E values while others don't. This is intentional since missing the E value in a line is same as telling the printer to not extrude any filament while moving to the coordinates given. The user can change the E value by changing `E_rate` or extrusion rate which we define in millmeters of filament used per unit centimeter. 
+
+The `Feed rate` or F value in the code directly correlates to the distance travelled by the nozzle in millimeters per minute (mm/min). In the same example, you can see that the F values in 
+```
+Figure X (Update vlue of x)
+```
+ goes upto 5000. The maximum and minimum is often limited to the capabilities of the printer itself. But if the nozzle moves too fast while printing, the extrusion will not adhere to the previous layer properly. If it moves too slow, the extrusion can heatup the previous layer causing warpage or even clog the nozzle. The user can change this value in the UI as well. 
+
+Let us know get into the different functions the backend uses to build the model's gcode and how the layers are modified to create these interesting structures. 
+
+### 
 
 Will be edited by Raghav. 
 This section will provide the details of how the backend works. 
