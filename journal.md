@@ -3,8 +3,9 @@
 Digital Fabrication Studio
 Fall 2020
 Hands-on learning of G-code using a Python tool.**
-Raghav Hari Krishna V S (427009525)
-Arman Rezaee (827009201)
+[Raghav Hari Krishna V S](https://github.com/vsraghavhk) (427009525)
+
+[Arman Rezaee](https://github.com/armanrze) (827009201)
 
 
 ## Table of contents
@@ -128,26 +129,26 @@ ADDD IMAGE
 
 ## Some interesting print results and analysis
 This sub division will provide images and analysis of some prints we made using our tool.
+Arman, please do this. 
 
 ## User limits and Restrictions
-This sub section will detail the limits of user's flexibility in changing the values and the reasoning behind it. 
-It will also explain the alerts, and how they are cross-checked. 
+We made our tool to provide flexibility to the user in as many ways as possible. But there are still some restrictions to what the user can do due to a variety of reasons. 
+### Printer limitations 
+- The user is constrained to a range of values in the following parameters due to the limitations of the the 3D printer we had available to us ([Creality Ender 3](https://www.creality3dofficial.com/products/official-creality-ender-3-3d-printer))
+    - Print size. Parameters such as edge length, radius, and numbe of layers of the shape is limited by the size of the printer bed. 
+    - Print temperature. Since we tested and sued only PLA, our print temperatures are based on the temps used by PLA and the temps the printer can handle without casing damage to itself. 
 
-So far we simulated every aspect of our g-code and used slicers and g-code viewers to estimate
-printing time and amount of filaments needed to print. However, using an actual 3d printer brought up a
-set of mistakes and errors that we needed to correct.
+- Limitations on complexity.
+    - complex model shapes and structures. The shapes themselves were purposely kept simple to enable the users to rapidly prototype and focus on learning the basics of gcode. We did have inital plans on adding concave shapes, but the complexity of writing gcode for such shapes exponentially increase. To maintain quality in our our and to amnage time effectively, we decided to stick with simpler shapes. 
 
+### Future Work
+Both our frontend and backend are design with future expansions with scalability and modularity in mind. Our backend is a small package API which can both be edited by a user as well as imported and used by a user. We took our time in implementing these properties in our work with some future work in mind. 
+- Adding capabilities for concave structures. This is a strenuous but achievable goal given that the current code allows us to do a wide variety of layer-wise operations already. 
+- Providing the user the ability to change parameters during the middle of or print/gcode generation. This type of real time editing capabilities are a little more complex to add, but stilla chievable with time and some clever programming. 
+- Scaling the tool to take in user gcode, and modifying it by using sliders and value fields in the UI would be very interesting to beginners and professionals alike. Since the entire tool is pretty light compared to slicing programs, it would save the user a lot of time to make smalla nd simple changes like increasing feed rate or adding layers in functionally geenrated designs. 
 
 ## Conclusion
-
-Hands-on experience in modifying g-code is a powerful way to teach how 3D printers work. This
-tool can help people who want to start learning g-code and give them a visualization perspective of g-code
-modifications. Although simulation is a powerful tool to catch the mistakes before printing and wasting
-materials, it will not respond like an actual 3d printer with physical limitations and errors. As part of this
-project we understood the importance of nozzle size and that layer continuity is key to print strong and
-flexible shapes. Moreover, we figured out that having continuous layers is not a guarantee for stable and
-clean shapes. Factors such as extrusion rate and nozzle temperature can change the physical behaviour of
-the filament and distort the printed form.
+Hands-on experience in modifying g-code is a powerful way to teach how 3D printers work. This tool can help people who want to start learning g-code and give them a visualization perspective of g-code modifications. Although simulation is a powerful tool to catch the mistakes before printing and wasting materials, it will not respond like an actual 3d printer with physical limitations and errors. As part of this project we understood the importance of nozzle size and that layer continuity is key to print strong and flexible shapes. Moreover, we figured out that having continuous layers is not a guarantee for stable and clean shapes. Factors such as extrusion rate and nozzle temperature can change the physical behaviour of the filament and distort the printed form.
 
 ## References
 
