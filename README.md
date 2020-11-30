@@ -12,7 +12,7 @@ The instructions on how to install this project on your system locally and test 
 [Frontend installation guide](/frontend/3d_project)
 
 # Troubleshooting information
-data.json holds the parameters set by the user. It is created with soem default values. 
+variables.json holds the parameters set by the user. It is created with some default values. 
 If this fle does not exist (and if values are not updated in the web page), consider running create_json.py. This will create the file with some default values.
 Changing values in the file manually should be same as changing the values in the web page. A good way to understand how the code works as well. (Or if you are not a GUI person)
 
