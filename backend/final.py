@@ -155,7 +155,7 @@ class Model:
             return random_xy(x, y)
         elif self.func_choice == 6: 
             return self.shift_xy(x, y)
-        elif func_choice == 7:
+        elif self.func_choice == 7:
             return self.shift_turn_xy(x, y)
         else: # For choice=1 or anything else
             return self.straight_xy(x, y)
