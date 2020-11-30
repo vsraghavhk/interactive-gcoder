@@ -169,7 +169,7 @@ Hands-on experience in modifying g-code is a powerful way to teach how 3D printe
 ## References
 
 1. [G-code Wiki](https://reprap.org/wiki/G-code)
-2. [jherrm G-code simulator](​https://jherrm.com/gcode-viewer)
+2. [jherrm G-code simulator](https://jherrm.com/gcode-viewer)
 3. [NCViewer - G-code viewer](https://ncviewer.com)
 4. [G-code Analyzer](https://www.gcodeanalyser.com/)
 5. [Ultimaker Cura 3D slicer and gcode analyzer](https://ultimaker.com/software/ultimaker-cura)
