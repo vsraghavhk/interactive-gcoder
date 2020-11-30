@@ -8,7 +8,7 @@ Hands-on learning of G-code using a Python tool.**
 [Arman Rezaee](https://github.com/armanrze) (827009201)
 
 
-## Table of contents
+## Table of contents TO BE UPDATED
 
 - Introduction
 - Methodology
