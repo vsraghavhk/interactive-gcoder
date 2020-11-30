@@ -11,9 +11,8 @@
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4",
     "yarn": "^1.22.10",
-    "antd":"^3.26.17",
-    "@ant-design/icons":"latest"
-    
+    "antd": "^3.26.17",
+    "@ant-design/icons": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #10375c;
 }
 
 .App-logo {
@@ -14,66 +15,55 @@
 }
 
 .body {
+  background-color: #10375c;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: lightgray;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+@import "~antd/dist/antd.css";
 
-.header {
-  background-color: #f4e04d;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(7px + 2vmin);
-  color: #10375c;
+.code-box-demo {
+  text-align: center;
 }
-.header {
-  background-color: #f4e04d;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(7px + 2vmin);
-  color: #10375c;
+.ant-layout-header,
+.ant-layout-footer {
+  color: #fff;
+  background: #7dbcea;
 }
-.stock-container {
-  padding-left: 3em;
-  padding-right: 3em;
-  margin-top: 3em;
+[data-theme="dark"] .ant-layout-header {
+  background: #6aa0c7;
 }
-
-table {
-  display: flex;
-  justify-content: center;
-  border: 1px solid gray;
+[data-theme="dark"] .ant-layout-footer {
+  background: #6aa0c7;
 }
-td {
-  border: 1px solid gray;
-  width: 30em;
+.ant-layout-footer {
+  line-height: 1.5;
 }
-
-#components-layout-demo-fixed-sider .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+.ant-layout-sider {
+  color: #fff;
+  line-height: 120px;
+  min-width: 400px;
+  background: #3ba0e9;
 }
-.site-layout .site-layout-background {
-  background: #fff;
+[data-theme="dark"] .ant-layout-sider {
+  background: #3499ec;
+}
+.ant-layout-content {
+  min-height: 120px;
+  color: #fff;
+  line-height: 120px;
+  background: rgba(16, 142, 233, 1);
+}
+[data-theme="dark"] .ant-layout-content {
+  background: #107bcb;
+}
+> .code-box-demo > .ant-layout + .ant-layout {
+  margin-top: 48px;
 }

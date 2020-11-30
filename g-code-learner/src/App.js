@@ -1,103 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { Variable_3D  } from "./variables";
-import {PrintParamForm} from "./form";
-import {Layout, Menu} from 'antd';
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+//import { Variable_3D } from "./variables";
+//import { PrintParamForm } from "./form";
+import { Layout, Row, Col } from "antd";
+
+const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
   const [currentTime, setCurrentTime] = useState(1);
   const [extRate, setExtRate] = useState(2);
 
   useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.timeee);
-    });
-  }, []); 
+    fetch("/time")
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrentTime(data.timeee);
+      });
+  }, []);
   useEffect(() => {
-    fetch('/extrusion').then(res => res.json()).then(data => {
-      setExtRate(data.extrusion);
-    });
-  }, []); 
+    fetch("/extrusion")
+      .then((res) => res.json())
+      .then((data) => {
+        setExtRate(data.extrusion);
+      });
+  }, []);
 
   //download file function
-  
-  const { Header, Content, Footer, Sider } = Layout;
-
-  
-  
-
 
   return (
     <div className="App">
-      
       {/* <Variable_3D  />
-      <PrintParamForm /> */}
- 
- <Layout>
-    <Sider
-      style={{
-        overflow: 'auto',
-        height: '100vh',
-        position: 'fixed',
-        left: 0,
-      }}
-    >
-      <div className="logo" />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-        <Menu.Item key="1" icon={<UserOutlined />}>
-          nav 1
-        </Menu.Item>
-        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-          nav 2
-        </Menu.Item>
-        <Menu.Item key="3" icon={<UploadOutlined />}>
-          nav 3
-        </Menu.Item>
-        <Menu.Item key="4" icon={<BarChartOutlined />}>
-          nav 4
-        </Menu.Item>
-        <Menu.Item key="5" icon={<CloudOutlined />}>
-          nav 5
-        </Menu.Item>
-        <Menu.Item key="6" icon={<AppstoreOutlined />}>
-          nav 6
-        </Menu.Item>
-        <Menu.Item key="7" icon={<TeamOutlined />}>
-          nav 7
-        </Menu.Item>
-        <Menu.Item key="8" icon={<ShopOutlined />}>
-          nav 8
-        </Menu.Item>
-      </Menu>
-    </Sider>
-    <Layout className="site-layout" style={{ marginLeft: 200 }}>
-      <Header className="site-layout-background" style={{ padding: 0 }} />
-      <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-        <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
-          ...
-          <br />
-          Really
-          
-          <br />
-          content
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-    </Layout>
-  </Layout>
+      <PrintParamForm /> 
+      <p>The current time is {currentTime}.</p>*/}
+      <Layout>
+        <Header>
+          <h1>
+            Interactive G-code Learning Tool
+            <a style={{ float: "right", fontSize: "small" }}>About US</a>
+          </h1>
+        </Header>
+        <Layout>
+          <Content>
+            <Row gutter={24} type="flex">
+              <Col xs={24} sm={10} md={10} style={{ backgroundColor: "gray" }}>
+                sider
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+              </Col>
+              <Col xs={24} sm={14} md={14}>
+                Visualization
+              </Col>
+            </Row>
+          </Content>
+        </Layout>
+        <Footer>Created by Arman and Raghav - 2020</Footer>
+      </Layout>
     </div>
-    
-    
   );
 }
 
