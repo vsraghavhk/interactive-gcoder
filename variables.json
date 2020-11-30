@@ -1,0 +1,40 @@
+{
+    "backup_el": 8,
+    "backup_radius": 8.21,
+    "base_x": [
+        118.21,
+        115.81,
+        110.0,
+        104.19,
+        101.79,
+        104.19,
+        110.0,
+        115.81
+    ],
+    "base_y": [
+        110.0,
+        115.81,
+        118.21,
+        115.81,
+        110.0,
+        104.19,
+        101.79,
+        104.19
+    ],
+    "bed_temp": 60,
+    "center_x": 110,
+    "center_y": 110,
+    "e_mode": 1,
+    "e_rate": 0.6,
+    "edge_length": 8,
+    "f_rate": 1556,
+    "filename": "default.gcode",
+    "func_choice": 3,
+    "nozzle_temp": 230,
+    "num_layers": 100,
+    "num_sides": 8,
+    "radius": 8.21,
+    "random_value": 3,
+    "wave_amp": 2.5,
+    "z_shift": 0.15
+}
