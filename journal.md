@@ -1,4 +1,4 @@
-# This is the mid-term report. Final journal will be updated here as soon as it is done. 
+# This is the Final Journal for Digital Fabrication Studio. 
 **CSCE 689
 Digital Fabrication Studio
 Fall 2020
