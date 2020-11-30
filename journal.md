@@ -16,14 +16,14 @@ Hands-on learning of G-code using a Python tool.**
 - [UI Design (Frontend)](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#ui-design-frontend)
 - [Backend implementation](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#backend-implementation)
     - [Setting the parameters through gcode](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#setting-the-parameters-through-gcode)
-    - [Patterns](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#pattern-straight)
-        - Straight
-        - Spiral
-        - Wave
-        - Random
-        - Screw
-        - Shift
-        - Shift and Turn
+- [Shape Functions and the patterns they create](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#shape-functions-and-the-patterns-they-create)
+    - Straight
+    - Spiral
+    - Wave
+    - Random
+    - Screw
+    - Shift
+    - Shift and Turn
 - [Some Interesting print results and analysis](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#some-interesting-print-results-and-analysis)
 - [User Limitations and Restrictions](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#user-limits-and-restrictions)
     - Printer Limitations
