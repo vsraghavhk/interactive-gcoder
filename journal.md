@@ -61,6 +61,7 @@ React cannot handle the api call and in order to use our python code in the back
 Figure below illustrates the UI and all parameters that user can change.
 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG" width="400" class="center">
+
 ```
 Figure 2: Screenshot of the Web-app UI
 ```
