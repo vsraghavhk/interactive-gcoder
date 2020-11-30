@@ -142,7 +142,7 @@ Figure 8: A sliced model and a print of the Screw design.
 ### Pattern: Shift
 The previous designs were made by changing the position of the vertices at each layer. But this pattern is made by shifting the center across the print bed. The original center for this print is at ```(x, y) = (110, 110)```. But as the layer increases, the center is moved by 0.1mm every layer along the X axis and the vertices are recalculated. This creates the pattern resembling a [Penne pasta](https://en.wikipedia.org/wiki/Penne). 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="250">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Shift-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="250">
 
 ```
 Figure 9: A gcode model in ncviewer and a print of the Shift design. It resembles a Penne Pasta. 
@@ -151,7 +151,7 @@ Figure 9: A gcode model in ncviewer and a print of the Shift design. It resemble
 ### Pattern: Shift and Turn
 This design takes the Shift pattern one step further by combining the spiral pattern with it. So at every layer the vertices rotate around the center by 1 degree, and the center shifts by 0.1mm and the vertices are recalculated. Thus it gives this very cool effect. This design also shows that the python code is design with modularity in mind, i.e. a user interested in modifying the code, can simply combine modules as is and create new shapes and patterns. 
 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="250">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/Shift-turn-model.png" width="250">     <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="250">
 
 ```
 Figure 10: This interesting model is made by combining the shift and Spiral pattern. The center of the design moves along an axis. 
