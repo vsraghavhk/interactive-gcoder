@@ -60,7 +60,7 @@ for this project we chose React as our framework to call the api and run the pyt
 React cannot handle the api call and in order to use our python code in the backend we had to use Flask. Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications. It began as a simple wrapper around Werkzeug and Jinja and has become one of the most popular Python web application frameworks.
 
 Figure below illustrates the UI.
-![Figure X: Single page webapp](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.jpg)
+![Figure 2: Single page webapp](https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/website.JPG)
  
 This part is where we will provide images of the UI design and what the user will see before printing
 
