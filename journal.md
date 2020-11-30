@@ -1,4 +1,4 @@
-## Project Journal
+# Project Journal
 **CSCE 689
 Digital Fabrication Studio
 Fall 2020
