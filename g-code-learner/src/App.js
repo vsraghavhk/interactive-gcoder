@@ -4,11 +4,13 @@ import "./App.css";
 import { PrintParamForm } from "./form";
 import { Layout, Row, Col } from "antd";
 
-const { Header, Footer, Sider, Content } = Layout;
+const editJsonFile = require("edit-json-file");
+const { Header, Footer, Content } = Layout;
 
 function App() {
   const [currentTime, setCurrentTime] = useState(1);
   const [extRate, setExtRate] = useState(2);
+  let file = editJsonFile(`/variablestest.json`);
 
   useEffect(() => {
     fetch("/time")
@@ -28,32 +30,47 @@ function App() {
   //download file function
 
   return (
-    <div className="App">
-      {/* <Variable_3D  />
+    file.set("backup_el", "7"),
+    file.save(),
+    (file = editJsonFile(`/variablestest.json`, {
+      autosave: true,
+    })),
+    (
+      <div className="App">
+        {/* <Variable_3D  />
       
       <p>The current time is {currentTime}.</p>*/}
-      <Layout>
-        <Header>
-          <h1>
-            Interactive G-code Learning Tool
-            <a style={{ float: "right", fontSize: "small" }}>About US</a>
-          </h1>
-        </Header>
         <Layout>
-          <Content>
-            <Row gutter={24} type="flex">
-              <Col xs={24} sm={10} md={10} style={{ backgroundColor: "gray" }}>
-                <PrintParamForm />
-              </Col>
-              <Col xs={24} sm={14} md={14}>
-                Visualization
-              </Col>
-            </Row>
-          </Content>
+          <Header>
+            <h1>
+              Interactive G-code Learning Tool
+              <a style={{ float: "right", fontSize: "small" }}>About US</a>
+            </h1>
+          </Header>
+          <Layout>
+            <Content>
+              <Row gutter={24} type="flex">
+                <Col
+                  xs={24}
+                  sm={10}
+                  md={10}
+                  style={{ backgroundColor: "gray" }}
+                >
+                  <h3>Printer and Shape Parameters</h3>
+
+                  <PrintParamForm />
+                  <br />
+                </Col>
+                <Col xs={24} sm={14} md={14}>
+                  Visualization
+                </Col>
+              </Row>
+            </Content>
+          </Layout>
+          <Footer>Created by Arman and Raghav - 2020</Footer>
         </Layout>
-        <Footer>Created by Arman and Raghav - 2020</Footer>
-      </Layout>
-    </div>
+      </div>
+    )
   );
 }
 
