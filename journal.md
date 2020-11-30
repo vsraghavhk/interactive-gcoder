@@ -88,9 +88,10 @@ Let us now get into the different functions the backend uses to build the model'
 
 ### Pattern: Straight
 This pattern or shape is simply the base layer copied on top of itself for howmany ever layers the print is defined for by the use. It basically creates a hollow structure with no features (Apart from print lines) on the surface. The gcode, 
+![Straight-gcode]()
 ```
-ADD IMAGES
-Figure X+2: Gcode of a Stright pattern [Note that the X and Y values don't change every layer]; Figure X+3: ncviewer model; Figure x+4: PRinted sample;
+
+Figure X+2: Gcode of a Stright pattern [Note that the X and Y values don't change every layer]; Figure X+3: ncviewer model; Figure x+4: Printed sample;
 ```
 
 ### Pattern: Spiral
