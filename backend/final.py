@@ -152,7 +152,7 @@ class Model:
         elif self.func_choice == 4:
             return self.screw_xy(x, y)
         elif self.func_choice == 5:
-            return random_xy(x, y)
+            return self.random_xy(x, y)
         elif self.func_choice == 6: 
             return self.shift_xy(x, y)
         elif self.func_choice == 7:
@@ -289,7 +289,7 @@ class Model:
             new.write("M103\n")
         z=z+10
         new.write("G1 X{} Y{} Z{} F{}; Move away from print\n".format(x[0], y[0], z, self.F_rate))
-        new.write("G92 X5 Y200 Z{} F{}; Move away from print\n".format(z, self.F_rate))
+        new.write("G1 X5 Y200 Z{} F{}; Move away from print\n".format(z, self.F_rate))
         new.close()
 
 
