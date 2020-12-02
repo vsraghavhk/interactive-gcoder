@@ -1,8 +1,8 @@
-# This is the mid-term report. Final journal will be updated here as soon as it is done. 
-**CSCE 689
-Digital Fabrication Studio
-Fall 2020
-Hands-on learning of G-code using a Python tool.**
+# Project Journal
+#### CSCE 689 Digital Fabrication Studio
+#### Fall 2020
+#### Hands-on learning of G-code using a Python tool.
+
 
 [Raghav Hari Krishna V S](https://github.com/vsraghavhk) (427009525)
 
@@ -16,14 +16,14 @@ Hands-on learning of G-code using a Python tool.**
 - [UI Design (Frontend)](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#ui-design-frontend)
 - [Backend implementation](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#backend-implementation)
     - [Setting the parameters through gcode](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#setting-the-parameters-through-gcode)
-    - [Patterns](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#pattern-straight)
-        - Straight
-        - Spiral
-        - Wave
-        - Random
-        - Screw
-        - Shift
-        - Shift and Turn
+- [Shape Functions and the patterns they create](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#shape-functions-and-the-patterns-they-create)
+    - Straight
+    - Spiral
+    - Wave
+    - Random
+    - Screw
+    - Shift
+    - Shift and Turn
 - [Some Interesting print results and analysis](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#some-interesting-print-results-and-analysis)
 - [User Limitations and Restrictions](https://github.com/vsraghavhk/interactive-gcoder/blob/main/journal.md#user-limits-and-restrictions)
     - Printer Limitations
@@ -87,6 +87,7 @@ Once can note that the E value (`Extrusion value`) goes up consistently as the l
 
 The `Feed rate` or F value in the code directly correlates to the distance travelled by the nozzle in millimeters per minute (mm/min). In the same example, you can see that the F values in Figure 3 goes upto 5000. The maximum and minimum is often limited to the capabilities of the printer itself. But if the nozzle moves too fast while printing, the extrusion will not adhere to the previous layer properly. If it moves too slow, the extrusion can heatup the previous layer causing warpage or even clog the nozzle. The user can change this value in the UI as well. 
 
+## Shape Functions and the patterns they create. 
 Let us now get into the different functions the backend uses to build the model's gcode and how the layers are modified to create these interesting structures. 
 
 ### Pattern: Straight
@@ -163,22 +164,41 @@ Using our printer we printed multiple objects in different forms and settings to
 Overall the quality of the prints and the performance of this interactive tool was robust and better than expected. Below you can find some samples of the printed shapes.
 
 <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/all-prints.jpg" width="600"> 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200"> 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200"> 
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">
-<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
 
+```
+Figure 11: A Family picture of all of our models and most of our test prints.
+```
 
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/random.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw.jpg" width="200"> <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/screw2.jpg" width="200"> 
 
+```
+Figure 12: Random (left) and Screw prints (center and right)
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift2.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn.jpg" width="200">
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/shift-turn2.jpg" width="200">  
+
+```
+Figure 13: The Shift (two on the left) and Shift and Turn (two on the right) prints from different perspectives. 
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight3.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight2.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/straight.jpg" width="200">
+
+```
+Figure 14: Photos of the Straight Design being printed at different points of time. 
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/spiral.jpg" width="400">  
+
+```
+Figure 15: A comparison of the same Spiral design printed with different parameters. The left one has 210C Nozzle temperature and 0.24mm layer height. the right one has 230C nozzle temperature and 0.15 mm layer height. 
+```
+
+<img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave.jpg" width="200">  <img src="https://github.com/vsraghavhk/interactive-gcoder/blob/main/images/wave2.jpg" width="200">
+
+```
+Figure 16: The Wave pattern print sample. We can see that there is still some print artifacts near the overhang. 
+```
 
 ## User limits and Restrictions
 We made our tool to provide flexibility to the user in as many ways as possible. But there are still some restrictions to what the user can do due to a variety of reasons. 
